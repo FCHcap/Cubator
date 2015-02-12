@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DbShowTableDialog</class>
+ <widget class="QDialog" name="DbShowTableDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>640</width>
+    <height>490</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Data Viewer</string>
+  </property>
+  <property name="locale">
+   <locale language="English" country="UnitedStates"/>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Table</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>487</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="2" column="0" colspan="2">
+    <widget class="QCheckBox" name="cbAllowChanges">
+     <property name="text">
+      <string>Allow changes</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="3">
+    <widget class="DbTableWidget" name="tableWidget"/>
+   </item>
+   <item row="0" column="1">
+    <widget class="QComboBox" name="comboTablesNames"/>
+   </item>
+   <item row="3" column="0" colspan="3">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Close</set>
+     </property>
+     <property name="centerButtons">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>DbTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>DbTableWidget.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>DbShowTableDialog</receiver>
+   <slot>exit()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>317</x>
+     <y>469</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboTablesNames</sender>
+   <signal>currentIndexChanged(QString)</signal>
+   <receiver>DbShowTableDialog</receiver>
+   <slot>onComboTablesNamesChanged(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>103</x>
+     <y>13</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>238</x>
+     <y>8</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cbAllowChanges</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>DbShowTableDialog</receiver>
+   <slot>allowChanges(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>85</x>
+     <y>437</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>201</x>
+     <y>441</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>onButtonDelete()</slot>
+  <slot>onComboTablesNamesChanged(QString)</slot>
+  <slot>onButtonAdd()</slot>
+  <slot>onClicked(QModelIndex)</slot>
+  <slot>onButtonClear()</slot>
+  <slot>allowChanges(bool)</slot>
+  <slot>exit()</slot>
+ </slots>
+</ui>
