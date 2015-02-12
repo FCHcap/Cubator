@@ -14,7 +14,7 @@
    <string>Cubator</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="Cubator.qrc">
+   <iconset resource="../../../resources/Cubator.qrc">
     <normaloff>:/icons/cubator.png</normaloff>:/icons/cubator.png</iconset>
   </property>
   <property name="locale">
@@ -261,7 +261,7 @@
   </action>
   <action name="actionSelectTool">
    <property name="icon">
-    <iconset resource="Cubator.qrc">
+    <iconset resource="../../../resources/Cubator.qrc">
      <normaloff>:/icons/select.png</normaloff>:/icons/select.png</iconset>
    </property>
    <property name="text">
@@ -270,7 +270,7 @@
   </action>
   <action name="actionMoveTool">
    <property name="icon">
-    <iconset resource="Cubator.qrc">
+    <iconset resource="../../../resources/Cubator.qrc">
      <normaloff>:/icons/move.png</normaloff>:/icons/move.png</iconset>
    </property>
    <property name="text">
@@ -279,7 +279,7 @@
   </action>
   <action name="actionSaveTool">
    <property name="icon">
-    <iconset resource="Cubator.qrc">
+    <iconset resource="../../../resources/Cubator.qrc">
      <normaloff>:/icons/save.png</normaloff>:/icons/save.png</iconset>
    </property>
    <property name="text">
@@ -288,7 +288,7 @@
   </action>
   <action name="actionPointAddTool">
    <property name="icon">
-    <iconset resource="Cubator.qrc">
+    <iconset resource="../../../resources/Cubator.qrc">
      <normaloff>:/icons/point.png</normaloff>:/icons/point.png</iconset>
    </property>
    <property name="text">
@@ -297,7 +297,7 @@
   </action>
   <action name="actionLineAddTool">
    <property name="icon">
-    <iconset resource="Cubator.qrc">
+    <iconset resource="../../../resources/Cubator.qrc">
      <normaloff>:/icons/line.png</normaloff>:/icons/line.png</iconset>
    </property>
    <property name="text">
@@ -306,7 +306,7 @@
   </action>
   <action name="actionPolylineAddTool">
    <property name="icon">
-    <iconset resource="Cubator.qrc">
+    <iconset resource="../../../resources/Cubator.qrc">
      <normaloff>:/icons/polyline.png</normaloff>:/icons/polyline.png</iconset>
    </property>
    <property name="text">
@@ -315,7 +315,7 @@
   </action>
   <action name="actionTextAddTool">
    <property name="icon">
-    <iconset resource="Cubator.qrc">
+    <iconset resource="../../../resources/Cubator.qrc">
      <normaloff>:/icons/text.png</normaloff>:/icons/text.png</iconset>
    </property>
    <property name="text">
@@ -324,7 +324,7 @@
   </action>
   <action name="actionFillTool">
    <property name="icon">
-    <iconset resource="Cubator.qrc">
+    <iconset resource="../../../resources/Cubator.qrc">
      <normaloff>:/icons/paint.png</normaloff>:/icons/paint.png</iconset>
    </property>
    <property name="text">
@@ -333,7 +333,7 @@
   </action>
   <action name="actionColorSelectTool">
    <property name="icon">
-    <iconset resource="Cubator.qrc">
+    <iconset resource="../../../resources/Cubator.qrc">
      <normaloff>:/icons/color.png</normaloff>:/icons/color.png</iconset>
    </property>
    <property name="text">
@@ -342,7 +342,7 @@
   </action>
   <action name="actionLineWidthTool">
    <property name="icon">
-    <iconset resource="Cubator.qrc">
+    <iconset resource="../../../resources/Cubator.qrc">
      <normaloff>:/icons/pen_width.png</normaloff>:/icons/pen_width.png</iconset>
    </property>
    <property name="text">
@@ -351,7 +351,7 @@
   </action>
   <action name="actionFontTool">
    <property name="icon">
-    <iconset resource="Cubator.qrc">
+    <iconset resource="../../../resources/Cubator.qrc">
      <normaloff>:/icons/fonts.png</normaloff>:/icons/fonts.png</iconset>
    </property>
    <property name="text">
@@ -360,7 +360,7 @@
   </action>
   <action name="actionSettings">
    <property name="icon">
-    <iconset resource="Cubator.qrc">
+    <iconset resource="../../../resources/Cubator.qrc">
      <normaloff>:/icons/settings.png</normaloff>:/icons/settings.png</iconset>
    </property>
    <property name="text">
@@ -369,7 +369,7 @@
   </action>
   <action name="actionIconAddTool">
    <property name="icon">
-    <iconset resource="Cubator.qrc">
+    <iconset resource="../../../resources/Cubator.qrc">
      <normaloff>:/icons/icon.png</normaloff>:/icons/icon.png</iconset>
    </property>
    <property name="text">
@@ -378,7 +378,7 @@
   </action>
   <action name="actionIconXYAddTool">
    <property name="icon">
-    <iconset resource="Cubator.qrc">
+    <iconset resource="../../../resources/Cubator.qrc">
      <normaloff>:/icons/iconXY.png</normaloff>:/icons/iconXY.png</iconset>
    </property>
    <property name="text">
@@ -390,7 +390,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="Cubator.qrc">
+    <iconset resource="../../../resources/Cubator.qrc">
      <normaloff>:/icons/recordDisabled.png</normaloff>
      <normalon>:/icons/recordEnabled.png</normalon>:/icons/recordDisabled.png</iconset>
    </property>
@@ -400,7 +400,7 @@
   </action>
   <action name="actionMeshTool">
    <property name="icon">
-    <iconset resource="Cubator.qrc">
+    <iconset resource="../../../resources/Cubator.qrc">
      <normaloff>:/icons/mesh.png</normaloff>:/icons/mesh.png</iconset>
    </property>
    <property name="text">
@@ -409,7 +409,7 @@
   </action>
   <action name="actionVolumeTool">
    <property name="icon">
-    <iconset resource="Cubator.qrc">
+    <iconset resource="../../../resources/Cubator.qrc">
      <normaloff>:/icons/volume.png</normaloff>:/icons/volume.png</iconset>
    </property>
    <property name="text">
@@ -423,7 +423,7 @@
   </action>
   <action name="actionSaveAllTool">
    <property name="icon">
-    <iconset resource="Cubator.qrc">
+    <iconset resource="../../../resources/Cubator.qrc">
      <normaloff>:/icons/saveAll.png</normaloff>:/icons/saveAll.png</iconset>
    </property>
    <property name="text">
@@ -566,7 +566,7 @@
   </action>
   <action name="actionMeasureAddTool">
    <property name="icon">
-    <iconset resource="Cubator.qrc">
+    <iconset resource="../../../resources/Cubator.qrc">
      <normaloff>:/icons/measure.png</normaloff>:/icons/measure.png</iconset>
    </property>
    <property name="text">
@@ -583,7 +583,7 @@
   </action>
   <action name="actionPointXyzDbAddTool">
    <property name="icon">
-    <iconset resource="Cubator.qrc">
+    <iconset resource="../../../resources/Cubator.qrc">
      <normaloff>:/icons/pointXYZDb.png</normaloff>:/icons/pointXYZDb.png</iconset>
    </property>
    <property name="text">
@@ -592,7 +592,7 @@
   </action>
   <action name="actionPointXyAddTool">
    <property name="icon">
-    <iconset resource="Cubator.qrc">
+    <iconset resource="../../../resources/Cubator.qrc">
      <normaloff>:/icons/pointXYZ.png</normaloff>:/icons/pointXYZ.png</iconset>
    </property>
    <property name="text">
@@ -604,7 +604,7 @@
   </action>
   <action name="actionPrintInPng">
    <property name="icon">
-    <iconset resource="Cubator.qrc">
+    <iconset resource="../../../resources/Cubator.qrc">
      <normaloff>:/icons/png.png</normaloff>:/icons/png.png</iconset>
    </property>
    <property name="text">
@@ -626,7 +626,7 @@
   </action>
   <action name="actionPictureTool">
    <property name="icon">
-    <iconset resource="Cubator.qrc">
+    <iconset resource="../../../resources/Cubator.qrc">
      <normaloff>:/icons/picture.png</normaloff>:/icons/picture.png</iconset>
    </property>
    <property name="text">
@@ -645,7 +645,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="Cubator.qrc"/>
+  <include location="../../../resources/Cubator.qrc"/>
  </resources>
  <connections>
   <connection>

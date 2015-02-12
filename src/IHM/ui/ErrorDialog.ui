@@ -64,7 +64,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="Cubator.qrc">:/icons/error.png</pixmap>
+        <pixmap resource="../../../resources/Cubator.qrc">:/icons/error.png</pixmap>
        </property>
       </widget>
      </item>
@@ -125,7 +125,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="Cubator.qrc"/>
+  <include location="../../../resources/Cubator.qrc"/>
  </resources>
  <connections>
   <connection>
