@@ -38,5 +38,6 @@
         <file>icons/cubator.png</file>
         <file>icons/png.png</file>
         <file>icons/picture.png</file>
+        <file>pictures/splashscreen.png</file>
     </qresource>
 </RCC>

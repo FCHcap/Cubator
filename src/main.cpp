@@ -15,17 +15,8 @@
 #include <SplashScreen.h>
 #include <CubException.h>
 
-#define LINUX
-
-#if defined(linux) || defined(__linux__)
-#define SPLASH_PICTURE "/usr/share/cubator/pictures/splashscreen.png"
-#define CUBATORFR_QM "/usr/share/cubator/cubator_fr.qm"
-#elif defined(_WIN32) || defined(__WIN32__)
-#define SPLASH_PICTURE "pictures/splashscreen.png"
+#define SPLASH_PICTURE ":/pictures/splashscreen.png"
 #define CUBATORFR_QM "cubator_fr.qm"
-#else
-#error Plateforme inconnue !
-#endif
 
 #define QTFR_QM "qt_"+QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath)
 #define QTFR_QM_L "qt_fr.qm"
@@ -39,15 +30,12 @@ int main(int argc, char *argv[])
     app.setOrganizationName("Fch");
 
     // Affiche l'écran splash si l'image est trouvée
-    if(QFile::exists(SPLASH_PICTURE))
-    {
-        QPixmap pixmap(SPLASH_PICTURE);
+    QPixmap pixmap(SPLASH_PICTURE);
+
+    if(!pixmap.isNull()) {
         SplashScreen splash(pixmap);
         QTimer::singleShot(2000, &splash, SLOT(accept()));
         splash.exec();
-    }
-    else{
-        QMessageBox::warning(0, TITLE05, ERROR27 + '\n' + TEXT01 + QString(SPLASH_PICTURE));
     }
 
     // Charge la traduction de Cubator

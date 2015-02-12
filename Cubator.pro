@@ -271,8 +271,6 @@ FORMS    += \
     src/IHM/ui/VolumeCalculatorDialog.ui \
     src/IHM/ui/ConvertToNgfDialog.ui
 
-RESOURCES += \
-    resources/Cubator.qrc \
-    src/IHM/ui/Cubator.qrc
+RESOURCES = resources/Cubator.qrc
 
-TRANSLATIONS = resources/translations/cubator_fr.ts
+TRANSLATIONS = cubator_fr.ts
