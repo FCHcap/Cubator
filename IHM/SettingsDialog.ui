@@ -1,0 +1,1183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SettingsDialog</class>
+ <widget class="QDialog" name="SettingsDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>522</width>
+    <height>494</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>522</width>
+    <height>494</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>522</width>
+    <height>494</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Settings</string>
+  </property>
+  <property name="locale">
+   <locale language="English" country="UnitedStates"/>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_5">
+   <item row="2" column="0">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="wMaps">
+      <attribute name="title">
+       <string>Maps</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_6">
+       <item row="0" column="0" colspan="4">
+        <layout class="QGridLayout" name="glMaps">
+         <item row="0" column="0" rowspan="3">
+          <widget class="QListWidget" name="lMaps"/>
+         </item>
+         <item row="1" column="1">
+          <widget class="QPushButton" name="pbMapRemove">
+           <property name="text">
+            <string>Remove</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <spacer name="sMaps">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="0" column="1">
+          <widget class="QPushButton" name="pbMapAdd">
+           <property name="text">
+            <string>Add</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QCheckBox" name="cbMapsCenteringGps">
+         <property name="text">
+          <string>Centering Gps (by default)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <widget class="QCheckBox" name="cbMapsEnableChanges">
+         <property name="text">
+          <string>Enable changes (by default)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="2">
+        <widget class="QLabel" name="lMapsDefault">
+         <property name="text">
+          <string>Map selected (by default)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QComboBox" name="cbMapsDefault">
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>0</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="3">
+        <spacer name="hsMaps1">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>58</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="4" column="0" colspan="2">
+        <widget class="QCheckBox" name="cbMapsCenterView">
+         <property name="text">
+          <string>Define Center View</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="lMapsCenterViewX">
+         <property name="text">
+          <string>X</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QLineEdit" name="leMapsCenterViewX"/>
+       </item>
+       <item row="5" column="2" colspan="2">
+        <spacer name="hsMaps2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>220</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="lMapsCenterViewY">
+         <property name="text">
+          <string>Y</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QLineEdit" name="leMapsCenterViewY"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="wBoats">
+      <attribute name="title">
+       <string>Boats</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_7">
+       <item row="0" column="0" rowspan="3">
+        <widget class="QListWidget" name="lBoats"/>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="pbBoatAdd">
+         <property name="text">
+          <string>Add</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="pbBoatRemove">
+         <property name="text">
+          <string>Remove</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>323</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="wDevices">
+      <attribute name="title">
+       <string>Devices</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="2">
+        <widget class="QGroupBox" name="gbDevicesSonar">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="title">
+          <string>Sounder</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="3" column="0">
+           <widget class="QLabel" name="lDevicesSonarStopBit">
+            <property name="text">
+             <string>Stop bit</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="lDevicesSonarParity">
+            <property name="text">
+             <string>Parity</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QComboBox" name="cbDevicesSonarDataBits"/>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="lDevicesSonarFlowControl">
+            <property name="text">
+             <string>Flow control</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="lDevicesSonarName">
+            <property name="text">
+             <string>Name</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="lDevicesSonarBauds">
+            <property name="text">
+             <string>Baudrates</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QComboBox" name="cbDevicesSonarBauds">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>0</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="lDevicesSonarDataBits">
+            <property name="text">
+             <string>Data bits</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0" colspan="2">
+           <widget class="QCheckBox" name="cbDevicesSonarEnable">
+            <property name="text">
+             <string>Enable Sounder</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="leDevicesSonarName"/>
+          </item>
+          <item row="3" column="1">
+           <widget class="QComboBox" name="cbDevicesSonarStopBit"/>
+          </item>
+          <item row="4" column="1">
+           <widget class="QComboBox" name="cbDevicesSonarParity"/>
+          </item>
+          <item row="5" column="1">
+           <widget class="QComboBox" name="cbDevicesSonarFlowControl"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="2">
+        <widget class="QGroupBox" name="gbDevicesGps">
+         <property name="title">
+          <string>Gps</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="2" column="0">
+           <widget class="QLabel" name="lDevicesGpsDataBits">
+            <property name="text">
+             <string>Data bits</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="lDevicesGpsParity">
+            <property name="text">
+             <string>Parity</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QComboBox" name="cbDevicesGpsDataBits"/>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="lDevicesGpsName">
+            <property name="text">
+             <string>Name</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="leDevicesGpsName"/>
+          </item>
+          <item row="6" column="0" colspan="2">
+           <widget class="QCheckBox" name="cbDevicesGpsEnable">
+            <property name="text">
+             <string>Enable GPS</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="lDevicesGpsStopBit">
+            <property name="text">
+             <string>Stop bit</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="lDevicesGpsBauds">
+            <property name="text">
+             <string>Baudrates</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="lDevicesGpsFlowControl">
+            <property name="text">
+             <string>Flow control</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QComboBox" name="cbDevicesGpsBauds">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>0</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QComboBox" name="cbDevicesGpsStopBit"/>
+          </item>
+          <item row="4" column="1">
+           <widget class="QComboBox" name="cbDevicesGpsParity"/>
+          </item>
+          <item row="5" column="1">
+           <widget class="QComboBox" name="cbDevicesGpsFlowControl"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <spacer name="vsDevices">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>2</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="1" column="1">
+        <widget class="QComboBox" name="cbDevicesProjectionSystem"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="lDevicesProjection">
+         <property name="text">
+          <string>Projection :</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="wEllipsoides">
+      <attribute name="title">
+       <string>Ellipsoids</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_28">
+       <item row="0" column="0" colspan="4">
+        <widget class="QGroupBox" name="gbEllNames">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>240</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>Ellipsoids names</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_9">
+          <item row="0" column="0" rowspan="2">
+           <widget class="QListWidget" name="lwEllNames"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QLabel" name="lEllSemiMajorAxis">
+         <property name="text">
+          <string>Semi-major axis A(m)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QDoubleSpinBox" name="dsEllSemiMajorAxis">
+         <property name="minimumSize">
+          <size>
+           <width>180</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="decimals">
+          <number>4</number>
+         </property>
+         <property name="minimum">
+          <double>-100000000.000000000000000</double>
+         </property>
+         <property name="maximum">
+          <double>100000000.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <spacer name="hsEll">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>124</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="lEllSemiMinorAxis">
+         <property name="text">
+          <string>Semi-minor axis B(m)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QDoubleSpinBox" name="dsEllSemiMinorAxis">
+         <property name="decimals">
+          <number>4</number>
+         </property>
+         <property name="minimum">
+          <double>-100000000.000000000000000</double>
+         </property>
+         <property name="maximum">
+          <double>100000000.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <spacer name="vsEll">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>3</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="wDatums">
+      <attribute name="title">
+       <string>Datum</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="1" column="0" colspan="2">
+        <widget class="QLabel" name="lDatEll">
+         <property name="text">
+          <string>Reference ellipsoid :</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QComboBox" name="cbDatEll">
+         <property name="minimumSize">
+          <size>
+           <width>180</width>
+           <height>0</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <widget class="QGroupBox" name="lDatTranslation">
+         <property name="minimumSize">
+          <size>
+           <width>140</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>140</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>Translation (WGS84)</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_24">
+          <item row="0" column="0">
+           <widget class="QLabel" name="lDatTranslationX">
+            <property name="text">
+             <string>X</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="lDatTranslationY">
+            <property name="text">
+             <string>Y</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="lDatTranslationZ">
+            <property name="text">
+             <string>Z</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="spDatTranslationX">
+            <property name="minimum">
+             <number>-10000</number>
+            </property>
+            <property name="maximum">
+             <number>10000</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QSpinBox" name="spDatTranslationY">
+            <property name="minimum">
+             <number>-10000</number>
+            </property>
+            <property name="maximum">
+             <number>10000</number>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QSpinBox" name="spDatTranslationZ">
+            <property name="minimum">
+             <number>-10000</number>
+            </property>
+            <property name="maximum">
+             <number>10000</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QGroupBox" name="lDatRotation">
+         <property name="minimumSize">
+          <size>
+           <width>140</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>140</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>Rotation (WGS84)</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_25">
+          <item row="0" column="0">
+           <widget class="QLabel" name="lDatRotationX">
+            <property name="text">
+             <string>X</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="lDatRotationY">
+            <property name="text">
+             <string>Y</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="lDatRotationZ">
+            <property name="text">
+             <string>Z</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="spDatRotationX">
+            <property name="minimum">
+             <number>-10000</number>
+            </property>
+            <property name="maximum">
+             <number>10000</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QSpinBox" name="spDatRotationY">
+            <property name="minimum">
+             <number>-10000</number>
+            </property>
+            <property name="maximum">
+             <number>10000</number>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QSpinBox" name="spDatRotationZ">
+            <property name="minimum">
+             <number>-10000</number>
+            </property>
+            <property name="maximum">
+             <number>10000</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="4">
+        <widget class="QGroupBox" name="lDatNames">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>240</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>Datums names</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_26">
+          <item row="0" column="0" rowspan="2">
+           <widget class="QListWidget" name="lwDatNames"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="lDatSf">
+         <property name="text">
+          <string>Scale factor :</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QSpinBox" name="spDatSf">
+         <property name="maximum">
+          <number>10000</number>
+         </property>
+         <property name="value">
+          <number>0</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="wProjections">
+      <attribute name="title">
+       <string>Projections</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_10">
+       <item row="0" column="0" colspan="5">
+        <widget class="QGroupBox" name="gbProNames">
+         <property name="title">
+          <string>Projections names</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_14">
+          <item row="0" column="0" rowspan="2">
+           <widget class="QListWidget" name="lwProNames"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="lProDatum">
+         <property name="text">
+          <string>Datum</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1" colspan="3">
+        <widget class="QComboBox" name="cbProDatum">
+         <property name="minimumSize">
+          <size>
+           <width>180</width>
+           <height>0</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="3">
+        <widget class="QLabel" name="lProN">
+         <property name="text">
+          <string>Exponent of the projection (n) :</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="3">
+        <widget class="QDoubleSpinBox" name="dsProN">
+         <property name="minimumSize">
+          <size>
+           <width>180</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="decimals">
+          <number>12</number>
+         </property>
+         <property name="minimum">
+          <double>-100000000.000000000000000</double>
+         </property>
+         <property name="maximum">
+          <double>100000000.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="4">
+        <spacer name="hsPro">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>132</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="3" column="0" colspan="3">
+        <widget class="QLabel" name="lProC">
+         <property name="text">
+          <string>Constant of the projection (c)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="3">
+        <widget class="QDoubleSpinBox" name="dsProC">
+         <property name="minimumSize">
+          <size>
+           <width>180</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="decimals">
+          <number>12</number>
+         </property>
+         <property name="minimum">
+          <double>-100000000.000000000000000</double>
+         </property>
+         <property name="maximum">
+          <double>100000000.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0" colspan="2">
+        <widget class="QLabel" name="lProL0">
+         <property name="text">
+          <string>Longitude origin :</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="3">
+        <widget class="QDoubleSpinBox" name="dsProL0">
+         <property name="minimumSize">
+          <size>
+           <width>180</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="decimals">
+          <number>12</number>
+         </property>
+         <property name="minimum">
+          <double>-100000000.000000000000000</double>
+         </property>
+         <property name="maximum">
+          <double>100000000.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0" colspan="4">
+        <widget class="QGroupBox" name="gbProCoor0">
+         <property name="title">
+          <string>Coordinates of the pole projection</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_15">
+          <item row="0" column="0">
+           <widget class="QLabel" name="lProXs">
+            <property name="text">
+             <string>X</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QDoubleSpinBox" name="dsProXs">
+            <property name="minimumSize">
+             <size>
+              <width>180</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="decimals">
+             <number>12</number>
+            </property>
+            <property name="minimum">
+             <double>-100000000.000000000000000</double>
+            </property>
+            <property name="maximum">
+             <double>100000000.000000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="lProYs">
+            <property name="text">
+             <string>Y</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QDoubleSpinBox" name="dsProYs">
+            <property name="decimals">
+             <number>12</number>
+            </property>
+            <property name="minimum">
+             <double>-100000000.000000000000000</double>
+            </property>
+            <property name="maximum">
+             <double>100000000.000000000000000</double>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="6" column="2">
+        <spacer name="vsPro">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>202</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="wStatus">
+      <attribute name="title">
+       <string>Status bar</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_8">
+       <item row="0" column="0">
+        <widget class="QLabel" name="lStatusProjection">
+         <property name="text">
+          <string>Projection</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QComboBox" name="cbStatusProjection">
+         <property name="minimumSize">
+          <size>
+           <width>120</width>
+           <height>0</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <spacer name="hsStatus">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>267</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="lStatusFormatGps">
+         <property name="text">
+          <string>Format GPS</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QComboBox" name="cbStatusFormatGps"/>
+       </item>
+       <item row="2" column="1">
+        <spacer name="vsStatus">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>323</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>lMaps</tabstop>
+  <tabstop>pbMapAdd</tabstop>
+  <tabstop>pbMapRemove</tabstop>
+  <tabstop>cbMapsCenteringGps</tabstop>
+  <tabstop>cbMapsEnableChanges</tabstop>
+  <tabstop>cbMapsDefault</tabstop>
+  <tabstop>cbMapsCenterView</tabstop>
+  <tabstop>leMapsCenterViewX</tabstop>
+  <tabstop>leMapsCenterViewY</tabstop>
+  <tabstop>cbDevicesGpsBauds</tabstop>
+  <tabstop>cbDevicesGpsEnable</tabstop>
+  <tabstop>cbDevicesSonarBauds</tabstop>
+  <tabstop>cbDevicesSonarEnable</tabstop>
+  <tabstop>cbDevicesProjectionSystem</tabstop>
+  <tabstop>lwEllNames</tabstop>
+  <tabstop>dsEllSemiMajorAxis</tabstop>
+  <tabstop>dsEllSemiMinorAxis</tabstop>
+  <tabstop>lwDatNames</tabstop>
+  <tabstop>cbDatEll</tabstop>
+  <tabstop>spDatTranslationX</tabstop>
+  <tabstop>spDatTranslationY</tabstop>
+  <tabstop>spDatTranslationZ</tabstop>
+  <tabstop>spDatRotationX</tabstop>
+  <tabstop>spDatRotationY</tabstop>
+  <tabstop>spDatRotationZ</tabstop>
+  <tabstop>spDatSf</tabstop>
+  <tabstop>lwProNames</tabstop>
+  <tabstop>cbProDatum</tabstop>
+  <tabstop>dsProN</tabstop>
+  <tabstop>dsProC</tabstop>
+  <tabstop>dsProL0</tabstop>
+  <tabstop>dsProXs</tabstop>
+  <tabstop>dsProYs</tabstop>
+  <tabstop>buttonBox</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>onAcceptEvent()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>228</x>
+     <y>484</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>196</x>
+     <y>156</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>onRejectEvent()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>228</x>
+     <y>484</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>196</x>
+     <y>156</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pbMapAdd</sender>
+   <signal>clicked()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>onMapAddEvent()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>500</x>
+     <y>76</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>196</x>
+     <y>156</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cbMapsCenterView</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>onMapsCenterViewEvent(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>119</x>
+     <y>374</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>6</x>
+     <y>392</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pbMapRemove</sender>
+   <signal>clicked()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>onMapRemoveEvent()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>500</x>
+     <y>109</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>196</x>
+     <y>156</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lwProNames</sender>
+   <signal>currentTextChanged(QString)</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>onProChangeEvent()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>96</x>
+     <y>62</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>39</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lwEllNames</sender>
+   <signal>currentTextChanged(QString)</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>onEllChangeEvent()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>96</x>
+     <y>62</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>333</x>
+     <y>-7</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lwDatNames</sender>
+   <signal>currentTextChanged(QString)</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>onDatChangeEvent()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>96</x>
+     <y>62</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>432</x>
+     <y>273</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pbBoatAdd</sender>
+   <signal>clicked()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>onBoatAddEvent()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>450</x>
+     <y>62</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>518</x>
+     <y>140</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pbBoatRemove</sender>
+   <signal>clicked()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>onBoatRemoveEvent()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>468</x>
+     <y>94</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>519</x>
+     <y>188</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>onMapAddEvent()</slot>
+  <slot>onMapRemoveEvent()</slot>
+  <slot>onIconAddEvent()</slot>
+  <slot>onIconRemoveEvent()</slot>
+  <slot>onAcceptEvent()</slot>
+  <slot>onRejectEvent()</slot>
+  <slot>onDatabaseSelectEvent()</slot>
+  <slot>onDatabaseNewEvent()</slot>
+  <slot>onMapsCenterViewEvent(bool)</slot>
+  <slot>onProChangeEvent()</slot>
+  <slot>onEllChangeEvent()</slot>
+  <slot>onDatChangeEvent()</slot>
+  <slot>onBoatSelectEvent()</slot>
+  <slot>onBoatAddEvent()</slot>
+  <slot>onBoatRemoveEvent()</slot>
+ </slots>
+</ui>
