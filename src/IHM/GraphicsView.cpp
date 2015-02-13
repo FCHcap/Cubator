@@ -3,6 +3,9 @@
 // QT
 #include <QScrollBar>
 
+// CUBATOR
+#include <Settings.h>
+
 GraphicsView::GraphicsView(QWidget *parent) :
     QGraphicsView(parent)
 {    
@@ -14,12 +17,26 @@ GraphicsView::GraphicsView(QWidget *parent) :
 
     _toolSelected = NO;
     _scene = 0;
-    _centeringGps = 0;
 }
 
 void GraphicsView::setScene(GraphicsScene *scene){
     _scene = scene;
     QGraphicsView::setScene(scene);
+
+    Settings * settings = Settings::getInstance();
+    SettingsMaps smaps = settings->settingsMaps();
+
+    if(smaps.enableCenterView()) {
+        QPointF pos = smaps.centerView();
+        QRectF rect = this->_scene->sceneRect();
+
+        if(!rect.contains(pos)) {
+            rect.adjust(0, 0, pos.x(), pos.y());
+            this->_scene->setSceneRect(rect.normalized());
+        }
+
+        this->centerOn(pos);
+    }
 }
 
 void GraphicsView::setTool(Tool tool){

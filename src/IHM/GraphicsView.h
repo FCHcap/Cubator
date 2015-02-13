@@ -8,7 +8,6 @@
 // CUBATOR
 #include <GraphicsScene.h>
 #include <GraphicsMapLayer.h>
-#include <Settings.h>
 #include <Tools.h>
 
 class GraphicsView : public QGraphicsView
