@@ -122,7 +122,7 @@ void Data::tableExists(const QString &table, const QString method, const QString
 Data::Data() throw (CubException){
 
     QDir dir;
-    dir.mkpath("DATA");
+    dir.mkpath("databases");
 
     QFile file(TABLE_FILENAME);
 
