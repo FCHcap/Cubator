@@ -7,10 +7,15 @@ DeviceProcess::DeviceProcess(QObject *parent) :
     _device = 0;
     _timerTimeout = 0;
     _timerInconsistent = 0;
+    _enabled = 0;
 }
 
 DeviceProcess::~DeviceProcess(){
     _settings = 0;
+}
+
+bool DeviceProcess::isEnabled() {
+    return this->_enabled;
 }
 
 QStringList DeviceProcess::listBaudrate(){
@@ -186,10 +191,12 @@ void DeviceProcess::reloadSettings(){
     open();
 }
 
-void DeviceProcess::setEnabled(bool enabled){
-
-    if(enabled)
+void DeviceProcess::setEnabled(bool state){
+    this->_enabled = state;
+    if(state) {
         connect(_device, SIGNAL(readyRead()), this, SLOT(read()));
-    else
+    } else {
         disconnect(_device, SIGNAL(readyRead()), this, SLOT(read()));
+    }
+    emit enabled(state);
 }

@@ -12,6 +12,12 @@ GpsWidget::GpsWidget(QWidget *parent) :
 
     layout->addWidget(_lX);
     layout->addWidget(_lY);
+
+    this->setVisible(false);
+}
+
+void GpsWidget::enable(bool value) {
+    this->setVisible(value);
 }
 
 void GpsWidget::updatePosition(QPointF position){

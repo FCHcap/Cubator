@@ -20,6 +20,7 @@ public:
     ~DeviceProcess();
 
     void connectToThread(QThread *thread);
+    bool isEnabled();
 
     static QStringList listBaudrate();
     static QStringList listDataBits();
@@ -33,6 +34,7 @@ protected:
     void open();
     
 signals:
+    void enabled(bool);
     void started();
     void finished();
     void connected(bool);
@@ -57,6 +59,7 @@ protected:
     QTimer * _timerInconsistent;
     SettingsDevice *_settings;
     QByteArray _data;
+    bool _enabled;
 };
 
 #endif // DEVICEPROCESS_H

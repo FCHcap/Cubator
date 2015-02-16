@@ -75,6 +75,7 @@ MainWindow::MainWindow() :
         // crée l'indicateur du gps
         QBoxLayout * layout = new QVBoxLayout(ui->graphicsView);
         GpsWidget * gpsWidget = new GpsWidget(ui->graphicsView);
+        connect(_gps, SIGNAL(enabled(bool)), gpsWidget, SLOT(enable(bool)));
         connect(_gps, SIGNAL(positionUpdated(QPointF)), gpsWidget, SLOT(updatePosition(QPointF)));
         connect(_gps, SIGNAL(connected(bool)), gpsWidget, SLOT(connect(bool)));
         connect(_gps, SIGNAL(timeout()), gpsWidget, SLOT(timeout()));

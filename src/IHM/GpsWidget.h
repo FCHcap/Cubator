@@ -16,6 +16,7 @@ public:
     explicit GpsWidget(QWidget *parent = 0);
     
 public slots:
+    void enable(bool value);
     void updatePosition(QPointF position);
     void connect(bool connected);
     void timeout();
