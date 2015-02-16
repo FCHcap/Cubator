@@ -58,7 +58,6 @@ private:
 protected:
     QMap<QString, Table> _tables;
     static Data *_data;
-
 };
 
 #endif // DATA_H

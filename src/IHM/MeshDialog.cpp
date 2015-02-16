@@ -28,6 +28,7 @@ MeshDialog::MeshDialog(QWidget *parent) :
     _scene = new QGraphicsScene(this);
     ui->graphicsView->setScene(_scene);
     ui->graphicsView->scale(1, -1);
+    ui->graphicsView->setCacheMode(QGraphicsView::CacheBackground);
 
     ui->cbShowVertex->setChecked(0);
     ui->cbShowTriangles->setChecked(0);
