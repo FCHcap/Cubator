@@ -94,19 +94,19 @@ void Data::save() throw (CubException){
 }
 
 QString Data::vectorFileName(const QString &table){
-    return QString("DATA/" + table + "_VEC.bin");
+    return QString(QString(TABLE_FOLDER) + "/" + table + "_VEC.bin");
 }
 
 QString Data::triangleFilename(const QString &table){
-    return QString("DATA/" + table + "_TRI.bin");
+    return QString(QString(TABLE_FOLDER) + "/" + table + "_TRI.bin");
 }
 
 QString Data::imageFilename(const QString &table){
-    return QString("DATA/" + table + "_IMG.bmp");
+    return QString(QString(TABLE_FOLDER) + "/" + table + "_IMG.bmp");
 }
 
 QString Data::gridFilename(const QString &table){
-    return QString("DATA/" + table + "_GRI.bin");
+    return QString(QString(TABLE_FOLDER) + "/" + table + "_GRI.bin");
 }
 
 void Data::tableExists(const QString &table, const QString method, const QString brief) const throw(CubException){

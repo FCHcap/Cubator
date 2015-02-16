@@ -18,6 +18,7 @@
 #include <Messages.h>
 #include <Defines.h>
 
+#define TABLE_FOLDER "databases"
 #define TABLE_FILENAME "databases/tables.bin"
 
 class Data{
