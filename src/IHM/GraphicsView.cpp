@@ -20,21 +20,6 @@ GraphicsView::GraphicsView(QWidget *parent) :
 void GraphicsView::setScene(GraphicsScene *scene){
     _scene = scene;
     QGraphicsView::setScene(scene);
-
-    Settings * settings = Settings::getInstance();
-    SettingsMaps smaps = settings->settingsMaps();
-
-    if(smaps.enableCenterView()) {
-        QPointF pos = smaps.centerView();
-        QRectF rect = this->_scene->sceneRect();
-
-        if(!rect.contains(pos)) {
-            rect.adjust(0, 0, pos.x(), pos.y());
-            this->_scene->setSceneRect(rect.normalized());
-        }
-
-        this->centerOn(pos);
-    }
 }
 
 void GraphicsView::keyPressEvent(QKeyEvent *event){
@@ -91,4 +76,17 @@ void GraphicsView::updateTransform(){
 
 void GraphicsView::updatePosition(QPointF position){
     centerOn(position);
+}
+
+void GraphicsView::updateSceneRect(const QRectF &rect) {
+
+    QGraphicsView::updateSceneRect(rect);
+
+    Settings * settings = Settings::getInstance();
+    SettingsMaps smaps = settings->settingsMaps();
+
+    if(smaps.enableCenterView()) {
+        QPointF pos = smaps.centerView();
+        this->centerOn(pos);
+    }
 }

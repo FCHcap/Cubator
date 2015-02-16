@@ -27,6 +27,7 @@ protected:
     
 public slots:
     void updatePosition(QPointF position);
+    void updateSceneRect(const QRectF &rect);
 
 protected:
     GraphicsScene * _scene;
