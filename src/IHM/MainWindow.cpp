@@ -71,6 +71,7 @@ MainWindow::MainWindow() :
         // paramètre la vue
         ui->graphicsView->setScene(_scene);
         ui->graphicsView->setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing | QPainter::HighQualityAntialiasing);
+        ui->graphicsView->setCacheMode(QGraphicsView::CacheBackground);
 
         // crée l'indicateur du gps
         QBoxLayout * layout = new QVBoxLayout(ui->graphicsView);
@@ -139,11 +140,13 @@ void MainWindow::initCbToolBar(){
     _cbIcons = new QComboBox(this);
     _cbBoats = new QComboBox(this);
     _cbTables = new QComboBox(this);
+
     _cbMaps->setMinimumWidth(130);
     _cbLayers->setMinimumWidth(130);
     _cbIcons->setMinimumWidth(130);
     _cbBoats->setMinimumWidth(130);
     _cbTables->setMinimumWidth(130);
+
     ui->toolBarCb->addWidget(new QLabel(TEXT20, this)); // Map
     ui->toolBarCb->addWidget(_cbMaps);
     ui->toolBarCb->addSeparator();
@@ -166,8 +169,7 @@ void MainWindow::initCbToolBar(){
 }
 
 void MainWindow::selectTool(QAction *action){
-
-    onToolTriggered(action);
+    triggerTool(action);
 }
 
 void MainWindow::updateMapCb(){
@@ -353,16 +355,16 @@ void MainWindow::showError(CubException exception){
     ErrorDialog::errorDialog(this, exception);
 }
 
-void MainWindow::onToolTriggered(QAction * action){
+void MainWindow::triggerTool(QAction * action){
 
     CubException e;
-    e.setMethod("MainWindow::onToolTriggered");
+    e.setMethod("MainWindow::triggerTool");
 
     GraphicsMap * map = _mapManager.item(_cbMaps->currentText());
-    if(!map) return; //throw CubException(BRIEF00, ERROR24, "MainWindow::onToolTriggered");
+    if(!map) return; //throw CubException(BRIEF00, ERROR24, "MainWindow::triggerTool");
 
     GraphicsMapLayer * layer = map->layerItem(_cbLayers->currentText());
-    if(!layer) return; //throw CubException(BRIEF00, ERROR25, "MainWindow::onToolTriggered");
+    if(!layer) return; //throw CubException(BRIEF00, ERROR25, "MainWindow::triggerTool");
 
     action->setEnabled(0);
 
@@ -413,7 +415,7 @@ void MainWindow::onToolTriggered(QAction * action){
             action->setEnabled(0);
             if(dialog.exec() == QDialog::Accepted){
                 GraphicsMapIconDef * icondef = map->iconDefItem(_cbIcons->currentText());
-                if(!icondef) throw CubException(BRIEF00, ERROR26, "MainWindow::onToolTriggered (actionIconXYAddTool)");
+                if(!icondef) throw CubException(BRIEF00, ERROR26, "MainWindow::triggerTool (actionIconXYAddTool)");
 
                 GraphicsIconItem * icon = new GraphicsIconItem;
                 icon->setIconDef(icondef);
@@ -469,18 +471,24 @@ void MainWindow::onToolTriggered(QAction * action){
 
     Tool tool = NO;
 
-    if(action == ui->actionSelectTool) tool = TSELECT;
-    else if(action == ui->actionMoveTool) tool = TMOVE;
-    else if(action == ui->actionPointAddTool) tool = TPOINT;
-    else if(action == ui->actionPointXyAddTool) tool = TPOINTXY;
-    else if(action == ui->actionLineAddTool) tool = TLINE;
-    else if(action == ui->actionPolylineAddTool) tool = TPOLYLINE;
-    else if(action == ui->actionTextAddTool) tool = TTEXT;
-    else if(action == ui->actionMeasureAddTool) tool = TMEASURE;
-    else if(action == ui->actionFillTool) tool = TPAINT;
-    else if(action == ui->actionIconAddTool) tool = TICON;
-    else if(action == ui->actionVolumeTool) tool = TVOLUME;
-    else if(action == ui->actionPointXyzDbAddTool) tool = TPOINTXYZ;
+    if(action == ui->actionMoveTool) {
+        tool = TMOVE;
+        ui->graphicsView->setDragMode(QGraphicsView::ScrollHandDrag);
+    } else {
+        if(action == ui->actionSelectTool) tool = TSELECT;
+        else if(action == ui->actionPointAddTool) tool = TPOINT;
+        else if(action == ui->actionPointXyAddTool) tool = TPOINTXY;
+        else if(action == ui->actionLineAddTool) tool = TLINE;
+        else if(action == ui->actionPolylineAddTool) tool = TPOLYLINE;
+        else if(action == ui->actionTextAddTool) tool = TTEXT;
+        else if(action == ui->actionMeasureAddTool) tool = TMEASURE;
+        else if(action == ui->actionFillTool) tool = TPAINT;
+        else if(action == ui->actionIconAddTool) tool = TICON;
+        else if(action == ui->actionVolumeTool) tool = TVOLUME;
+        else if(action == ui->actionPointXyzDbAddTool) tool = TPOINTXYZ;
+        ui->graphicsView->setDragMode(QGraphicsView::NoDrag);
+    }
+
 
     if(action == ui->actionSelectTool && _actionSelected != ui->actionSelectTool){layer->setSelectToolEnabled(1);}
     else if(_actionSelected == ui->actionSelectTool){layer->setSelectToolEnabled(0);}
@@ -489,15 +497,12 @@ void MainWindow::onToolTriggered(QAction * action){
     _actionSelected = action;
 
     _scene->selectTool(tool);
-    ui->graphicsView->setTool(tool);
 }
 
-void MainWindow::onMenuTriggered(QAction * action){
+void MainWindow::triggerMenu(QAction * action){
 
     GraphicsMap * mapSelected = _mapManager.item(_mapManager.mapSelected());
-    GraphicsMapLayer * layerSelected;
-
-    layerSelected = 0;
+    GraphicsMapLayer * layerSelected = 0;
 
     if(mapSelected){
         layerSelected = mapSelected->layerItem(mapSelected->layerSelected());

@@ -8,7 +8,7 @@
 // CUBATOR
 #include <GraphicsScene.h>
 #include <GraphicsMapLayer.h>
-#include <Tools.h>
+//#include <Tools.h>
 
 class GraphicsView : public QGraphicsView
 {
@@ -17,12 +17,8 @@ class GraphicsView : public QGraphicsView
 public:
     explicit GraphicsView(QWidget *parent = 0);
     void setScene(GraphicsScene * scene);
-    void setTool(Tool tool);
     
 protected:
-    void mousePressEvent(QMouseEvent *event);
-    void mouseReleaseEvent(QMouseEvent *event);
-    void mouseMoveEvent(QMouseEvent *event);
     void keyPressEvent(QKeyEvent *event);
     void wheelEvent(QWheelEvent *event);
 
@@ -37,7 +33,6 @@ protected:
     bool _centeringGps;
     bool _rightButtonPressed;
     QTransform _transform;
-    Tool _toolSelected;
     
 };
 

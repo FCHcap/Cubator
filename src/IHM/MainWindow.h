@@ -69,8 +69,8 @@ protected slots:
     void updateToolbarsMenus();
     void showSettingsDialog();
     void showError(CubException exception);
-    void onToolTriggered(QAction* action);
-    void onMenuTriggered(QAction* action);
+    void triggerTool(QAction* action);
+    void triggerMenu(QAction* action);
     void cbMapsIndexChanged(QString map);
     void cbLayersIndexChanged(const QString &layer);
     void cbIconsIndexChanged(const QString &icon);

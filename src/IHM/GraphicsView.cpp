@@ -10,12 +10,10 @@ GraphicsView::GraphicsView(QWidget *parent) :
     QGraphicsView(parent)
 {    
     setMouseTracking(1);
-    setRenderHint(QPainter::Antialiasing,true);
     setDragMode(QGraphicsView::NoDrag);
 
     verticalScrollBar()->installEventFilter(this);
 
-    _toolSelected = NO;
     _scene = 0;
 }
 
@@ -37,40 +35,6 @@ void GraphicsView::setScene(GraphicsScene *scene){
 
         this->centerOn(pos);
     }
-}
-
-void GraphicsView::setTool(Tool tool){
-    _toolSelected = tool;
-}
-
-void GraphicsView::mousePressEvent(QMouseEvent *event){
-
-    if(_toolSelected == TMOVE){
-        setDragMode(QGraphicsView::ScrollHandDrag);
-        setCursor(Qt::ClosedHandCursor);
-    }
-    else setDragMode(QGraphicsView::NoDrag);
-
-    QGraphicsView::mousePressEvent(event);
-}
-
-void GraphicsView::mouseReleaseEvent(QMouseEvent *event){
-
-    if(_toolSelected == TMOVE){
-        setDragMode(QGraphicsView::NoDrag);
-        setCursor(Qt::OpenHandCursor);
-    }
-    QGraphicsView::mouseReleaseEvent(event);
-}
-
-void GraphicsView::mouseMoveEvent(QMouseEvent *event){
-    if(_toolSelected == TMOVE){
-        setCursor(Qt::OpenHandCursor);
-    }
-    else{
-        setCursor(Qt::CrossCursor);
-    }
-    QGraphicsView::mouseMoveEvent(event);
 }
 
 void GraphicsView::keyPressEvent(QKeyEvent *event){
@@ -121,11 +85,6 @@ void GraphicsView::updateTransform(){
             GraphicsVolumeItem * volumeItem = qgraphicsitem_cast<GraphicsVolumeItem*> (item);
             volumeItem->setTextTransform(_transform);
         }
-
-        /*else if(item->type() == GraphicsPointXYItem::Type){
-            GraphicsPointXYItem * pointItem = qgraphicsitem_cast<GraphicsPointXYItem*> (item);
-            pointItem->setTextTransform(_transform);
-        }*/
     }
     if(_scene) _scene->setTransform(_transform);
 }

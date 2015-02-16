@@ -649,40 +649,40 @@
  </resources>
  <connections>
   <connection>
-   <sender>toolBar</sender>
-   <signal>actionTriggered(QAction*)</signal>
+   <sender>menubar</sender>
+   <signal>triggered(QAction*)</signal>
    <receiver>MainWindow</receiver>
-   <slot>onToolTriggered(QAction*)</slot>
+   <slot>triggerMenu(QAction*)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>219</x>
-     <y>42</y>
+     <x>505</x>
+     <y>10</y>
     </hint>
     <hint type="destinationlabel">
-     <x>394</x>
-     <y>98</y>
+     <x>505</x>
+     <y>299</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>menubar</sender>
-   <signal>triggered(QAction*)</signal>
+   <sender>toolBar</sender>
+   <signal>actionTriggered(QAction*)</signal>
    <receiver>MainWindow</receiver>
-   <slot>onMenuTriggered(QAction*)</slot>
+   <slot>triggerTool(QAction*)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>39</x>
-     <y>13</y>
+     <x>505</x>
+     <y>37</y>
     </hint>
     <hint type="destinationlabel">
-     <x>396</x>
-     <y>146</y>
+     <x>505</x>
+     <y>299</y>
     </hint>
    </hints>
   </connection>
  </connections>
  <slots>
-  <slot>onToolTriggered(QAction*)</slot>
-  <slot>onMenuTriggered(QAction*)</slot>
+  <slot>triggerTool(QAction*)</slot>
+  <slot>triggerMenu(QAction*)</slot>
  </slots>
 </ui>
