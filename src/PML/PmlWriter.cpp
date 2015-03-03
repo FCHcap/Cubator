@@ -214,17 +214,18 @@ void PmlWriter::run(){
             emit levelUpdated(100);
 
             // Saves the document
+            emit processNameUpdated(PROCESS20);
             QFile file(filename);
-            if(!file.open(QIODevice::WriteOnly)) throw CubException(BRIEF06, TEXT01 + filename, "PmlWriter::start");
+            if(!file.open(QIODevice::WriteOnly | QIODevice::Truncate)) throw CubException(BRIEF06, TEXT01 + filename, "PmlWriter::start");
             QTextStream out(&file);
-            doc.save(out, 2);
+            out << doc.toString();
+            out.flush();
             file.close();
         }
     }
     catch(CubException & e){
         emit exceptionLaunched(e);
     }
-    //emit finished();
 }
 
 void PmlWriter::writeLayer(QDomDocument &doc, QDomElement &layer, const QGraphicsItem *layerItem){

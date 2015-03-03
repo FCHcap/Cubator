@@ -54,6 +54,7 @@ class Text : public QObject{Q_OBJECT};
 #define PROCESS17 Text::tr("Loading grid : ")
 #define PROCESS18 Text::tr("Import file ...")
 #define PROCESS19 Text::tr("Reading DXF file ...")
+#define PROCESS20 Text::tr("Writing pml file ...")
 
 #define QUESTION01 Text::tr("Triangulation depends on the table. If you allow editing of the table, you delete the corresponding triangulation. \nDo you really want to continue ?")
 #define QUESTION02 Text::tr("Would-you really delete this table ?")
