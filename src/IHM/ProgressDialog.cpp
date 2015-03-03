@@ -1,8 +1,10 @@
 #include "ProgressDialog.h"
 #include "ui_ProgressDialog.h"
 
+#include <qwidget.h>
+
 ProgressDialog::ProgressDialog(QWidget *parent) :
-    QDialog(parent),
+    QDialog(parent, Qt::Dialog | Qt::WindowTitleHint),
     ui(new Ui::ProgressDialog)
 {
     ui->setupUi(this);
