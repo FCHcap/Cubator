@@ -2,6 +2,7 @@
 
 // QT
 #include <QThread>
+#include <QFileInfo>
 
 // CUBATOR
 #include <GraphicsHatchItem.h>
@@ -17,6 +18,7 @@ PmlWriter::PmlWriter(QObject * parent) : DefaultProcess(parent){
     _size = 0;
 }
 
+// list <filepath, map>
 void PmlWriter::setList(QMap<QString, GraphicsMap *> list){
     _list = list;
 }
@@ -30,7 +32,7 @@ void PmlWriter::run(){
     try{
         //emit started();
 
-        foreach(QString filename, _list.keys()){
+        foreach(QString filepath, _list.keys()){
 
             QDomDocument doc("Pml");
 
@@ -39,18 +41,18 @@ void PmlWriter::run(){
             doc.insertBefore(header, doc.firstChild());
 
             //Header
-            emit processNameUpdated(PROCESS13 + filename);
+            emit processNameUpdated(PROCESS13 + filepath);
             emit levelUpdated(0);
 
             QDomElement root = doc.createElement("pml");
             doc.appendChild(root);
 
-            GraphicsMap *pmlItem = _list.value(filename);
+            GraphicsMap *pmlItem = _list.value(filepath);
 
             _size = pmlItem->iconsDefItemsCount();
 
             GraphicsMap map;
-            // If the variable "_sortByType" is enabled
+            // if sort by item type option is enabled ...
             if(_sortByType){
                 GraphicsMapLayer * lineLayer = map.addLayer("lines", 0);
                 GraphicsMapLayer * hatchLayer = map.addLayer("hatches", 0);
@@ -155,7 +157,7 @@ void PmlWriter::run(){
             // Define the count of items to record
             _size += pmlItem->layersItemsCount();
 
-            // Reading layers ...
+            // Writing layers ...
             foreach(QGraphicsItem * item, pmlItem->childItems()){
 
                 if(item->type() == GraphicsMapLayer::Type){
@@ -170,7 +172,7 @@ void PmlWriter::run(){
                     layer.setAttribute("opacity", (double) layerItem->opacity());
                     layer.setAttribute("visibility", (int) layerItem->isVisible());
 
-                    writeLayer(doc, layer, item);
+                    writeLayer(doc, layer, item, filepath);
                 }
             }
 
@@ -189,7 +191,7 @@ void PmlWriter::run(){
                     icondef.setAttribute("name", (QString) icon->name());
                     icondef.setAttribute("selection-color", (QString) icon->selectionColor().name());
 
-                    writeLayer(doc, icondef, icon);
+                    writeLayer(doc, icondef, icon, filepath);
                 }
             }
 
@@ -207,7 +209,7 @@ void PmlWriter::run(){
                     boatdef.setAttribute("center-y", (double) boat->center().y());
                     boatdef.setAttribute("name", (QString) boat->name());
 
-                    writeLayer(doc, boatdef, boat);
+                    writeLayer(doc, boatdef, boat, filepath);
                 }
             }
 
@@ -215,8 +217,8 @@ void PmlWriter::run(){
 
             // Saves the document
             emit processNameUpdated(PROCESS20);
-            QFile file(filename);
-            if(!file.open(QIODevice::WriteOnly | QIODevice::Truncate)) throw CubException(BRIEF06, TEXT01 + filename, "PmlWriter::start");
+            QFile file(filepath);
+            if(!file.open(QIODevice::WriteOnly | QIODevice::Truncate)) throw CubException(BRIEF06, TEXT01 + filepath, "PmlWriter::start");
             QTextStream out(&file);
             out << doc.toString();
             out.flush();
@@ -228,7 +230,7 @@ void PmlWriter::run(){
     }
 }
 
-void PmlWriter::writeLayer(QDomDocument &doc, QDomElement &layer, const QGraphicsItem *layerItem){
+void PmlWriter::writeLayer(QDomDocument &doc, QDomElement &layer, const QGraphicsItem *layerItem, const QString filepath){
 
     foreach(QGraphicsItem * item, layerItem->childItems()){
 
@@ -349,7 +351,12 @@ void PmlWriter::writeLayer(QDomDocument &doc, QDomElement &layer, const QGraphic
             GraphicsPictureItem * pictureItem = qgraphicsitem_cast<GraphicsPictureItem*>(item);
             QDomElement picture = doc.createElement("picture");
             layer.appendChild(picture);
-            picture.setAttribute("filepath", (QString) pictureItem->filepath());
+
+            QString pictureFilepath = (QString) pictureItem->filepath();
+            if(compareFilepaths(filepath, pictureFilepath)) {
+                pictureFilepath = filenameFromFilepath(pictureFilepath);
+            }
+            picture.setAttribute("filepath", pictureFilepath);
             picture.setAttribute("sCenter-x", (double) pictureItem->sceneCenter().x());
             picture.setAttribute("sCenter-y", (double) pictureItem->sceneCenter().y());
             picture.setAttribute("width", (int) pictureItem->pixmapWidth());
@@ -451,4 +458,16 @@ void PmlWriter::writeBrushAttributes(QDomElement &element, const QBrush &brush){
 
 void PmlWriter::writeFontAttributes(QDomElement &element, const QFont &font){
     element.setAttribute("font", (QString) font.toString());
+}
+
+bool PmlWriter::compareFilepaths(const QString filepath1, const QString filepath2) {
+    QFileInfo fileinfo1(filepath1);
+    QFileInfo fileinfo2(filepath2);
+
+    return fileinfo1.absolutePath() == fileinfo2.absolutePath();
+}
+
+QString PmlWriter::filenameFromFilepath(const QString filepath) {
+    QFileInfo fileinfo(filepath);
+    return fileinfo.fileName();
 }
