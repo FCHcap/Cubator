@@ -39,5 +39,7 @@
         <file>icons/png.png</file>
         <file>icons/picture.png</file>
         <file>pictures/splashscreen.png</file>
+        <file>icons/left.png</file>
+        <file>icons/right.png</file>
     </qresource>
 </RCC>
