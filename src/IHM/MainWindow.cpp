@@ -3,6 +3,8 @@
 
 // CUBATOR
 #include <GraphicsPictureItem.h>
+#include <PositionWidget.h>
+#include <SearchTextWidget.h>
 
 MainWindow *MainWindow::_window = NULL;
 
@@ -18,7 +20,7 @@ MainWindow::MainWindow() :
         _actionSelected = 0;
 
         // initialize les barre de status
-        QWidget * statusPosWidget = new QWidget();
+        /*QWidget * statusPosWidget = new QWidget();
         _statusPos.setParent(statusPosWidget);
         _statusPosGeo.setParent(statusPosWidget);
 
@@ -28,7 +30,7 @@ MainWindow::MainWindow() :
         statusPosWidget->setLayout(sbLayout);
 
         ui->statusbar->addPermanentWidget(statusPosWidget,1);
-        ui->statusbar->addPermanentWidget(&_statusDepth, 1);
+        ui->statusbar->addPermanentWidget(&_statusDepth, 1);*/
 
         // crée et lance le thread GPS
         _gps = new Gps();
@@ -89,7 +91,6 @@ MainWindow::MainWindow() :
         ui->graphicsView->scale(1, -1); // inverse l'axe y (0,0 en bas à gauche)
 
         // connecte la scène
-        connect(_scene, SIGNAL(mousePositionUpdated(QPointF)), this, SLOT(updateMousePosition(QPointF)));
         connect(_scene, SIGNAL(mouseMeshDepthAdded(QString, double)), this, SLOT(addMouseMeshDepth(QString, double)));
         connect(_scene, SIGNAL(mouseMeshDepthNotFound()), this, SLOT(clearMeshDepth()));
         connect(_scene, SIGNAL(volumeShapeDefined(GraphicsVolumeItem*)), this, SLOT(calculateVolume(GraphicsVolumeItem*)));
@@ -99,6 +100,13 @@ MainWindow::MainWindow() :
         updateTableCb();
 
         selectTool(ui->actionMoveTool);
+
+        // charge les widgets dans la barre de status
+        PositionWidget *positionWidget = new PositionWidget(statusBar());
+        connect(_scene, GraphicsScene::mousePositionUpdated, positionWidget, PositionWidget::onPositionUpdated);
+        statusBar()->addWidget(positionWidget);
+
+        statusBar()->addWidget(new SearchTextWidget(statusBar(), this->ui->graphicsView));
 
         // charge les paramètres de la barre de status
         Settings * settings = Settings::getInstance();
@@ -503,6 +511,8 @@ void MainWindow::triggerMenu(QAction * action){
 
     GraphicsMap * mapSelected = _mapManager.item(_mapManager.mapSelected());
     GraphicsMapLayer * layerSelected = 0;
+
+    Q_UNUSED(layerSelected)
 
     if(mapSelected){
         layerSelected = mapSelected->layerItem(mapSelected->layerSelected());
