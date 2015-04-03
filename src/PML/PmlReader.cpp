@@ -9,15 +9,15 @@
 
 using namespace std;
 
-PmlReader::PmlReader(const QString & filepath) {
+PmlReader::PmlReader(const QString &filepath) {
     _filepath = filepath;
 }
 
-void PmlReader::setFilepath(const QString &filepath){
+void PmlReader::setFilepath(const QString &filepath) {
     _filepath = filepath;
 }
 
-QString PmlReader::filepath() const{
+QString PmlReader::filepath() const {
     return _filepath;
 }
 

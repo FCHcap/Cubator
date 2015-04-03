@@ -18,9 +18,9 @@ class PmlReader : public LoaderMapProcess
 {
 
 public:
-    PmlReader(const QString &filename = "");
+    PmlReader(const QString &filepath = "");
 
-    void setFilepath(const QString & filepath);
+    void setFilepath(const QString &filepath);
     QString filepath() const;
 
 public slots:
