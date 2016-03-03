@@ -126,7 +126,8 @@ SOURCES += src/main.cpp \
     src/IHM/GraphicsAnchorItem.cpp \
     src/IHM/GraphicsAnchorsItem.cpp \
     src/IHM/GraphicsPictureItem.cpp \
-    src/IHM/GraphicsRAnchorItem.cpp
+    src/IHM/GraphicsRAnchorItem.cpp \
+    src/IHM/PositionWidget.cpp
 
 HEADERS  += \
     src/IHM/MainWindow.h \
@@ -248,7 +249,8 @@ HEADERS  += \
     src/IHM/GraphicsAnchorItem.h \
     src/IHM/GraphicsAnchorsItem.h \
     src/IHM/GraphicsPictureItem.h \
-    src/IHM/GraphicsRAnchorItem.h
+    src/IHM/GraphicsRAnchorItem.h \
+    src/IHM/PositionWidget.h
 
 FORMS    += \
     src/IHM/ui/MainWindow.ui \
@@ -269,7 +271,8 @@ FORMS    += \
     src/IHM/ui/DateDialog.ui \
     src/IHM/ui/InputIntToStringDialog.ui \
     src/IHM/ui/VolumeCalculatorDialog.ui \
-    src/IHM/ui/ConvertToNgfDialog.ui
+    src/IHM/ui/ConvertToNgfDialog.ui \
+    src/IHM/ui/PositionWidget.ui
 
 RESOURCES = resources/Cubator.qrc
 
