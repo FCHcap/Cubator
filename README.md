@@ -1,6 +1,6 @@
 # Cubator 
-Cubator est un logiciel de positionnement GPS. Il permet également de connecter un échosondeur pour réaliser des mesures topographiques
-Compatible avec le format dxf, ce logiciel permet également l'édition vectorielle des cartes.
+Cubator est un logiciel de positionnement GPS. Il permet également de connecter un échosondeur pour réaliser des mesures topographiques.
+Compatible avec le format dxf, ce logiciel permet également l'édition vectorielle des cartes vectorielles.
 ![alt tag](https://raw.githubusercontent.com/Moulino/Cubator/master/screenshots/cubator1.jpg)
 
 Ci-dessous, la représentation de points XYZ issus d'un relevé.
