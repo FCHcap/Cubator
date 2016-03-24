@@ -2,6 +2,8 @@
 
 Gps::Gps(QObject *parent) : DeviceProcess(parent)
 {
+    connect(this, SIGNAL(timeout()), this, SLOT(onTimeout()));
+    connect(this, SIGNAL(inconsistentData()), this, SLOT(onInconsistentData()));
 }
 
 Gps::~Gps(){
@@ -13,6 +15,26 @@ void Gps::loadSettings(){
     SettingsGps * sgps = new SettingsGps;
     *sgps = settings->settingsGps();
     _settings = sgps;
+}
+
+void Gps::onEnabled(bool enabled) {
+    if(!enabled) {
+        emit positionRecovered(false);
+    }
+}
+
+void Gps::onConnected(bool connected) {
+    if(!connected) {
+        emit positionRecovered(false);
+    }
+}
+
+void Gps::onTimeout() {
+    emit positionRecovered(false);
+}
+
+void Gps::onInconsistentData() {
+    emit positionRecovered(false);
 }
 
 #include <iostream>
@@ -29,12 +51,14 @@ void Gps::processFrame(QByteArray &frame){
 
     cout << "Frame : " << data.toStdString() << endl;
 
-    if(rxgga.indexIn(data) != -1){
+    if(rxgga.exactMatch(data) == true){
         SettingsGps * sgps = (SettingsGps *) _settings;
 
         QString lg = rxgga.cap(4);
         QString lt = rxgga.cap(2);
-        double alt = rxgga.cap(9).toDouble();
+        QString alt = rxgga.cap(9);
+        QString dgps = rxgga.cap(6);
+        QString satellites = rxgga.cap(7);
 
         // Initializes the geodata object
         GeoData gd;
@@ -49,13 +73,23 @@ void Gps::processFrame(QByteArray &frame){
         double ltmd = rxcd.cap(2).toDouble(); // latitude minutes decimales
 
         gd.setCoord(ltd, ltmd, lgd, lgmd);
-        gd.setHeight(alt);
+        gd.setHeight(alt.toDouble());
 
         QStringList projections = CubGeo::listProjections();
         if(projections.contains(sgps->projection())){
             GeoData coordsRad = gd.toRad();
             GeoVecteur gv = geo.WGS84GeoToLambert(coordsRad, sgps->projection());
-            emit positionUpdated(QPointF(gv.x(), gv.y()));
+            QPointF position(gv.x(), gv.y());
+            GpsData gpsData;
+
+            gpsData.position = position;
+            gpsData.altitude = alt.toDouble();
+            gpsData.satellites = satellites.toInt();
+            gpsData.dgps = (dgps == "2") ? true : false;
+
+            emit positionUpdated(position);
+            emit gpsDataUpdated(gpsData);
+            emit positionRecovered(true);
         }
         _timerInconsistent->start();
         return;

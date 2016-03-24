@@ -89,10 +89,12 @@ void GraphicsIconItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *
             if(item->type() == QGraphicsEllipseItem::Type){
                 QGraphicsEllipseItem* ellipseItem = qgraphicsitem_cast<QGraphicsEllipseItem*>(item);
                 QPen pen = ellipseItem->pen();
+                QBrush brush = ellipseItem->brush();
 
                 if(autoColor) pen.setColor(_iconDef->selectionColor());
 
                 painter->setPen(pen);
+                painter->setBrush(brush);
                 painter->drawEllipse(ellipseItem->rect());
                 continue;
             }

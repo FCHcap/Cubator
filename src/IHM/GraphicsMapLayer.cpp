@@ -51,6 +51,7 @@ QString GraphicsMapLayer::name() const{return _name;}
 
 void GraphicsMapLayer::setEditable(bool editable){
     _editable = editable;
+    itemEdited();
     updateEditionAuthorization();
 }
 

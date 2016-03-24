@@ -238,7 +238,7 @@ void SettingsDialog::loadSettings(){
     SettingsMaps smaps = settings->settingsMaps();
     _mMaps = smaps.maps();
     ui->lMaps->clear();
-    ui->lMaps->addItems(_mMaps.keys());
+    ui->lMaps->addItems(_mMaps.values());
     ui->cbMapsCenteringGps->setChecked(smaps.centeringGps());
     ui->cbMapsEnableChanges->setChecked(smaps.enableChanges());
     ui->cbMapsCenterView->setChecked(smaps.enableCenterView());

@@ -157,26 +157,7 @@ void PmlWriter::run(){
             // Define the count of items to record
             _size += pmlItem->layersItemsCount();
 
-            // Writing layers ...
-            foreach(QGraphicsItem * item, pmlItem->childItems()){
-
-                if(item->type() == GraphicsMapLayer::Type){
-                    GraphicsMapLayer * layerItem = qgraphicsitem_cast<GraphicsMapLayer*>(item);
-
-                    // Creates dom node
-                    QDomElement layer = doc.createElement("layer");
-                    root.appendChild(layer);
-
-                    layer.setAttribute("name", (QString) layerItem->name());
-                    layer.setAttribute("elevation", (double) layerItem->zValue());
-                    layer.setAttribute("opacity", (double) layerItem->opacity());
-                    layer.setAttribute("visibility", (int) layerItem->isVisible());
-
-                    writeLayer(doc, layer, item, filepath);
-                }
-            }
-
-            // Record the definitions of icons and boats
+            // Record the definitions of icons
             foreach(QString icondefname, pmlItem->iconDefs()){
                 GraphicsMapIconDef * icon = pmlItem->iconDefItem(icondefname);
 
@@ -210,6 +191,30 @@ void PmlWriter::run(){
                     boatdef.setAttribute("name", (QString) boat->name());
 
                     writeLayer(doc, boatdef, boat, filepath);
+                }
+            }
+
+            // Writing layers ...
+            foreach(QGraphicsItem * item, pmlItem->childItems()){
+
+                if(item->type() == GraphicsMapLayer::Type){
+                    GraphicsMapLayer * layerItem = qgraphicsitem_cast<GraphicsMapLayer*>(item);
+
+                    // Creates dom node
+                    QDomElement layer = doc.createElement("layer");
+                    root.appendChild(layer);
+
+                    layer.setAttribute("name", (QString) layerItem->name());
+                    layer.setAttribute("elevation", (double) layerItem->zValue());
+                    layer.setAttribute("opacity", (double) layerItem->opacity());
+                    layer.setAttribute("visibility", (int) layerItem->isVisible());
+                    layer.setAttribute("editable", (int) layerItem->editable());
+
+                    if(pmlItem->defaultLayer() == layerItem->name()) {
+                        layer.setAttribute("default", "1");
+                    }
+
+                    writeLayer(doc, layer, item, filepath);
                 }
             }
 

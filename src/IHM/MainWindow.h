@@ -23,7 +23,7 @@
 #include <InputIntToStringDialog.h>
 #include <CreateIconDialog.h>
 #include <ConvertToNgfDialog.h>
-#include <GpsWidget.h>
+#include <GpsInfoWidget.h>
 #include <GraphicsBoatItem.h>
 #include <VolumeCalculatorDialog.h>
 #include <VolumeCalculatorProcess.h>
@@ -54,6 +54,8 @@ public:
 protected:
     void initCbToolBar();
     void selectTool(QAction* action);
+    void initMenuFromSettings();
+    void enableCenteringGps(bool enable);
 
 signals:
     void reloadDevicesSettings();
@@ -81,6 +83,8 @@ protected slots:
     void closeEvent(QCloseEvent *);
     void calculateVolume(GraphicsVolumeItem * item);
     void addPointXYZ(QPointF position);
+    void addIconAuto();
+    void updateCurrentGpsPosition(QPointF position);
 
 protected:
     GraphicsScene * _scene;
@@ -105,6 +109,7 @@ protected:
 
     Gps * _gps;
     CubGeo _geo;
+    QPointF _currentGpsPosition;
 
     QString _sbPro;
     QString _sbGpsFrm;

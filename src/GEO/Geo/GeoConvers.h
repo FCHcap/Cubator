@@ -61,7 +61,7 @@ public:
     //Transformation à 7 paramètres entre deux système géodésique (IGN ALG0013)
     static void transf7par(double tx, double ty, double tz, double d, double rx, double ry, double rz, double ux, double uy, double uz, double &vx, double &vy, double &vz);
 
-    //Transformation ) 7 paramètres entre deux système géodésique (IGN ALG0013 bis)
+    //Transformation à 7 paramètres entre deux système géodésique (IGN ALG0013 bis)
     static void transf7parInv(double tx, double ty, double tz, double d, double rx, double ry, double rz, double ux, double uy, double uz, double &vx, double &vy, double &vz);
 
     //Calcul de la grande normale (IGN ALG0021)

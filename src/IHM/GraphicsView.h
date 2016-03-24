@@ -17,9 +17,10 @@ class GraphicsView : public QGraphicsView
 public:
     explicit GraphicsView(QWidget *parent = 0);
     void setScene(GraphicsScene * scene);
+    void zoomIn();
+    void zoomOut();
     
 protected:
-    void keyPressEvent(QKeyEvent *event);
     void wheelEvent(QWheelEvent *event);
 
     void setScale(qreal scale);

@@ -50,6 +50,9 @@ public:
     GraphicsMapLayer * layerItem(const QString &layername);
     int layersItemsCount() const;
 
+    void setDefaultLayer(const QString &layername);
+    QString defaultLayer() const;
+
     QMap<QString, GraphicsMeshImageItem*> meshes();
 
     // Management icons
@@ -83,6 +86,7 @@ protected:
     QMap<QString, GraphicsMapBoatDef*> _mBoats;
     GraphicsMapEventManager * _eventManager;
     QString _layerSelected;
+    QString _defaultLayer;
     QString _iconSelected;
     QRectF _rect;
     bool _edited;

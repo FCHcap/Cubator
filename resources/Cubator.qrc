@@ -41,5 +41,7 @@
         <file>pictures/splashscreen.png</file>
         <file>icons/left.png</file>
         <file>icons/right.png</file>
+        <file>icons/zoomIn.png</file>
+        <file>icons/zoomOut.png</file>
     </qresource>
 </RCC>

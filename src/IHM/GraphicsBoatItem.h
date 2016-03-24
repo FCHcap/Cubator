@@ -8,6 +8,7 @@
 #include <GraphicsTypes.h>
 #include <GraphicsMapBoatDef.h>
 #include <GraphicsPolylineItem.h>
+#include <GraphicsPointXYItem.h>
 
 class GraphicsBoatItem : public QGraphicsItem{
 

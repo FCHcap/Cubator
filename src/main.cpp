@@ -50,13 +50,14 @@ int main(int argc, char *argv[])
     QTranslator qtTranslator;
     if(!qtTranslator.load(QTFR_QM)){
         if(!qtTranslator.load(QTFR_QM_L))
-            QMessageBox::warning(0, TITLE05, ERROR22 + '\n' + TEXT01 + QTFR_QM);
+            QMessageBox::warning(0, TITLE05, ERROR22 + '\n' + TEXT01 + QString(QTFR_QM_L));
     }
     else
         app.installTranslator(&qtTranslator);
 
     // Charge et affiche la fenêtre principale
     MainWindow * window = MainWindow::getInstance();
+    window->setWindowState(Qt::WindowMaximized);
     window->show();
 
     int code = app.exec(); // Lance la boucle d'évènements

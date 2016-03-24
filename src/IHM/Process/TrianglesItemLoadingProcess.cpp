@@ -16,6 +16,11 @@ void TrianglesItemLoadingProcess::run(){
         QGraphicsItemGroup * trianglesItem = new QGraphicsItemGroup;
         trianglesItem->setCacheMode(QGraphicsItem::DeviceCoordinateCache);
 
+        QPen pen(Qt::SolidLine);
+        pen.setColor(Qt::red);
+        pen.setWidth(1);
+        pen.setCosmetic(true);
+
         if(!_vertices) throw CubException(BRIEF00, ERROR08, "TrianglesItemLoadingProcess::start");
 
         DVertexList &vertices = *_vertices;
@@ -34,7 +39,7 @@ void TrianglesItemLoadingProcess::run(){
 
             ENode ** edg = new ENode*[vcount];
             for(int i=0; i<vcount; i++){
-                edg[i] = 0;
+                edg[i] = NULL;
             }
 
             DTriangleList &triangles = *vertices.triangles();
@@ -45,7 +50,7 @@ void TrianglesItemLoadingProcess::run(){
                 const int v2 = t.v2();
                 const int v3 = t.v3();
 
-                for(int i=3; i; --i){
+                for(int i=2; i >=0 ; --i){
                     int vv1 = 0;
                     int vv2 = 0;
 
@@ -99,7 +104,8 @@ void TrianglesItemLoadingProcess::run(){
                             const DVertex &dvv2 = vertices.at(vv2);
 
                             QGraphicsLineItem *line= new QGraphicsLineItem(dvv1.x(), dvv1.y(), dvv2.x(), dvv2.y());
-                            line->setPen(QPen(Qt::red));
+
+                            line->setPen(pen);
                             trianglesItem->addToGroup(line);
                         }
                     }
@@ -108,7 +114,7 @@ void TrianglesItemLoadingProcess::run(){
                 emit levelUpdated((int) (cpt * 100 / size));
             }
 
-            for(int i=0; i<vcount; i++){
+            /*for(int i=0; i<vcount; i++){
                 if(edg[i]){
                     ENode *n = edg[i];
                     ENode *nn = 0;
@@ -118,7 +124,7 @@ void TrianglesItemLoadingProcess::run(){
                         n = nn;
                     }
                 }
-            }
+            }*/
         }
 
         emit trianglesItemUpdated(trianglesItem);

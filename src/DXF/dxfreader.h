@@ -43,6 +43,8 @@ public:
     void setVersion(std::string *v){decoder.setVersion(v);}
     void setCodePage(std::string *c){decoder.setCodePage(c);}
     std::string getCodePage(){ return decoder.getCodePage();}
+    int pos();
+    int size();
 #ifdef DRW_DBG
     int count;//DBG
 #endif

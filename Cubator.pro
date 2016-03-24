@@ -40,7 +40,6 @@ SOURCES += src/main.cpp \
     src/IHM/GraphicsBoatItem.cpp \
     src/IHM/GraphicsIconItem.cpp \
     src/IHM/GraphicsAutoDepthItem.cpp \
-    src/IHM/GpsWidget.cpp \
     src/IHM/SounderWidget.cpp \
     src/IHM/AutoDephWidget.cpp \
     src/IHM/MeshGraphicsView.cpp \
@@ -127,8 +126,10 @@ SOURCES += src/main.cpp \
     src/IHM/GraphicsAnchorsItem.cpp \
     src/IHM/GraphicsPictureItem.cpp \
     src/IHM/GraphicsRAnchorItem.cpp \
-    src/IHM/PositionWidget.cpp \
-    src/IHM/SearchTextWidget.cpp
+    src/IHM/SearchTextWidget.cpp \
+    src/IHM/GpsInfoWidget.cpp \
+    src/IHM/IconAutoWidget.cpp \
+    src/IHM/PositionWidget.cpp
 
 HEADERS  += \
     src/IHM/MainWindow.h \
@@ -141,7 +142,6 @@ HEADERS  += \
     src/IHM/GraphicsBoatItem.h \
     src/IHM/GraphicsIconItem.h \
     src/IHM/GraphicsAutoDepthItem.h \
-    src/IHM/GpsWidget.h \
     src/IHM/SounderWidget.h \
     src/IHM/AutoDephWidget.h \
     src/IHM/MeshGraphicsView.h \
@@ -252,7 +252,9 @@ HEADERS  += \
     src/IHM/GraphicsPictureItem.h \
     src/IHM/GraphicsRAnchorItem.h \
     src/IHM/PositionWidget.h \
-    src/IHM/SearchTextWidget.h
+    src/IHM/SearchTextWidget.h \
+    src/IHM/GpsInfoWidget.h \
+    src/IHM/IconAutoWidget.h
 
 FORMS    += \
     src/IHM/ui/MainWindow.ui \
@@ -275,7 +277,9 @@ FORMS    += \
     src/IHM/ui/VolumeCalculatorDialog.ui \
     src/IHM/ui/ConvertToNgfDialog.ui \
     src/IHM/ui/PositionWidget.ui \
-    src/IHM/ui/SearchTextWidget.ui
+    src/IHM/ui/SearchTextWidget.ui \
+    src/IHM/ui/GpsInfoWidget.ui \
+    src/IHM/ui/IconAutoWidget.ui
 
 RESOURCES = resources/Cubator.qrc
 

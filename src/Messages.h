@@ -33,6 +33,7 @@ class Text : public QObject{Q_OBJECT};
 #define BRIEF25 Text::tr("The file does not exists !")
 #define BRIEF26 Text::tr("Error in loading the picture !")
 #define BRIEF27 Text::tr("Error in reading the picture !")
+#define BRIEF28 Text::tr("Error in adding the icon !")
 
 #define PROCESS00 Text::tr("Finished.")
 #define PROCESS01 Text::tr("Calculating the level NGF ...")
@@ -84,6 +85,7 @@ class Text : public QObject{Q_OBJECT};
 #define TITLE21 Text::tr("Loading file : ")
 #define TITLE22 Text::tr("Save the image")
 #define TITLE23 Text::tr("Select a picture file")
+#define TITLE24 Text::tr("Select the default layer")
 
 #define ERROR00 Text::tr("Unknown error !")
 #define ERROR03 Text::tr("triangles.length() < trimax !")
@@ -182,5 +184,6 @@ class Text : public QObject{Q_OBJECT};
 #define MESSAGE08 Text::tr("Select text color.")
 #define MESSAGE09 Text::tr("Select mesh color.")
 #define MESSAGE10 Text::tr("Select line width")
+#define MESSAGE11 Text::tr("The icon has been added.")
 
 #endif // MESSAGES_H

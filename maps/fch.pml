@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Pml>
 <pml>
+ <icondef name="ellicott" center-x="2" center-y="2">
+  <ellipse x="0" y="0" width="16" height="16" qt_pen_style="1" pen_weight="2" pen_color="#FF0000"/>
+  <ellipse x="7" y="7" width="2" height="2" qt_pen_style="1" pen_weight="2" pen_color="#FF0000" brush_color="#FF0000"/>
+ </icondef>
  <layer visibility="1" name="ign" elevation="0" opacity="0.8">
   <ellipse qt_pen_style="1" pen_weight="1" pen_color="#000000">
    <rect x="569.4396289686164" y="1550.286049819631" width="2" height="2"/>

@@ -89,11 +89,14 @@
    </item>
    <item row="4" column="0">
     <widget class="MeshGraphicsView" name="graphicsView">
-     <property name="renderHints">
-      <set>QPainter::Antialiasing|QPainter::HighQualityAntialiasing|QPainter::NonCosmeticDefaultPen|QPainter::SmoothPixmapTransform|QPainter::TextAntialiasing</set>
+     <property name="cacheMode">
+      <set>QGraphicsView::CacheBackground</set>
      </property>
      <property name="viewportUpdateMode">
       <enum>QGraphicsView::FullViewportUpdate</enum>
+     </property>
+     <property name="optimizationFlags">
+      <set>QGraphicsView::DontAdjustForAntialiasing|QGraphicsView::DontClipPainter|QGraphicsView::DontSavePainterState</set>
      </property>
     </widget>
    </item>

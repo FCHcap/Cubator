@@ -16,6 +16,18 @@ bool MeshGraphicsView::isMousePressed(){
     return _mousePressed;
 }
 
+void MeshGraphicsView::zoomIn() {
+    setScale(1.1);
+}
+
+void MeshGraphicsView::zoomOut() {
+    setScale(0.9);
+}
+
+void MeshGraphicsView::setScale(qreal scale) {
+    this->scale(scale, scale);
+}
+
 void MeshGraphicsView::mousePressEvent(QMouseEvent *event){
 
     if(event->button() == Qt::RightButton){
@@ -63,6 +75,14 @@ void MeshGraphicsView::keyReleaseEvent(QKeyEvent *event){
 
     if(event->key() == Qt::Key_Control){
         _kCtrlPressed = 0;
+    }
+
+    else if(event->key() == Qt::Key_Plus) {
+        zoomIn();
+    }
+
+    else if(event->key() == Qt::Key_Minus) {
+        zoomOut();
     }
 
     QGraphicsView::keyReleaseEvent(event);

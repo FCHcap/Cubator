@@ -135,6 +135,7 @@ protected:
     std::vector<DRW_ImageDef*> imageDef;  /*!< imageDef list */
 
     int currHandle;
+    int size;
 
 };
 

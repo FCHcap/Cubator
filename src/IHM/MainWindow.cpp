@@ -1,9 +1,14 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 
+// QT
+#include <QMessageBox>
+#include <QDate>
+
 // CUBATOR
 #include <GraphicsPictureItem.h>
 #include <PositionWidget.h>
+#include <IconAutoWidget.h>
 #include <SearchTextWidget.h>
 
 MainWindow *MainWindow::_window = NULL;
@@ -37,6 +42,8 @@ MainWindow::MainWindow() :
         QThread * thread = new QThread;
         _gps->moveToThread(thread);
 
+        qRegisterMetaType<GpsData>();
+
         connect(_gps, SIGNAL(exceptionLaunched(CubException)), this, SLOT(showError(CubException)));
         connect(this, SIGNAL(reloadDevicesSettings()), _gps, SLOT(reloadSettings()));
         connect(this, SIGNAL(enableGps(bool)), _gps, SLOT(setEnabled(bool)));
@@ -50,6 +57,9 @@ MainWindow::MainWindow() :
 
         // connecte le GPS et la scène
         connect(_gps, SIGNAL(positionUpdated(QPointF)), _scene, SLOT(updateGpsPosition(QPointF)));
+
+        // mémorise la dernière position enregistrée provenant du GPS
+        connect(_gps, SIGNAL(positionUpdated(QPointF)), this, SLOT(updateCurrentGpsPosition(QPointF)));
 
         // initialize le gestionnaire de cartes
         _mapManager.setScene(_scene);
@@ -76,17 +86,23 @@ MainWindow::MainWindow() :
         ui->graphicsView->setCacheMode(QGraphicsView::CacheBackground);
 
         // crée l'indicateur du gps
-        QBoxLayout * layout = new QVBoxLayout(ui->graphicsView);
-        GpsWidget * gpsWidget = new GpsWidget(ui->graphicsView);
-        connect(_gps, SIGNAL(enabled(bool)), gpsWidget, SLOT(enable(bool)));
-        connect(_gps, SIGNAL(positionUpdated(QPointF)), gpsWidget, SLOT(updatePosition(QPointF)));
-        connect(_gps, SIGNAL(connected(bool)), gpsWidget, SLOT(connect(bool)));
-        connect(_gps, SIGNAL(timeout()), gpsWidget, SLOT(timeout()));
-        connect(_gps, SIGNAL(inconsistentData()), gpsWidget, SLOT(inconsistentData()));
-        connect(_gps, SIGNAL(connected(bool)), gpsWidget, SLOT(setVisible(bool)));
+        QBoxLayout * layout = new QHBoxLayout(ui->graphicsView);
+        GpsInfoWidget *gpsInfoWidget = new GpsInfoWidget(ui->graphicsView);
+        connect(_gps, SIGNAL(enabled(bool)), gpsInfoWidget, SLOT(enable(bool)));
+        connect(_gps, SIGNAL(gpsDataUpdated(GpsData)), gpsInfoWidget, SLOT(updateData(GpsData)));
+        connect(_gps, SIGNAL(connected(bool)), gpsInfoWidget, SLOT(connect(bool)));
+        connect(_gps, SIGNAL(timeout()), gpsInfoWidget, SLOT(timeout()));
+        connect(_gps, SIGNAL(inconsistentData()), gpsInfoWidget, SLOT(inconsistentData()));
+        connect(_gps, SIGNAL(connected(bool)), gpsInfoWidget, SLOT(setVisible(bool)));
 
-        layout->addWidget(gpsWidget, 0, Qt::AlignRight);
+        IconAutoWidget *iconAutoWidget = new IconAutoWidget(ui->graphicsView);
+        iconAutoWidget->setVisible(false);
+        connect(_gps, SIGNAL(positionRecovered(bool)), iconAutoWidget, SLOT(setVisible(bool)));
+        connect(iconAutoWidget, SIGNAL(iconAutoAdded()), this, SLOT(addIconAuto()));
+
+        layout->addWidget(iconAutoWidget, 0, Qt::AlignTop);
         layout->addStretch();
+        layout->addWidget(gpsInfoWidget, 0, Qt::AlignTop);
 
         ui->graphicsView->scale(1, -1); // inverse l'axe y (0,0 en bas à gauche)
 
@@ -171,13 +187,36 @@ void MainWindow::initCbToolBar(){
     ui->toolBarCb->addWidget(_cbTables);
 
     connect(_cbMaps, SIGNAL(currentIndexChanged(QString)), this, SLOT(cbMapsIndexChanged(QString)));
-    connect(_cbLayers, SIGNAL(currentIndexChanged(QString)), this, SLOT(cbLayersIndexChanged(QString)));
     connect(_cbIcons, SIGNAL(currentIndexChanged(QString)), this, SLOT(cbIconsIndexChanged(QString)));
     connect(_cbBoats, SIGNAL(currentIndexChanged(QString)), this, SLOT(cbBoatsIndexChanged(QString)));
+
+    initMenuFromSettings();
 }
 
 void MainWindow::selectTool(QAction *action){
     triggerTool(action);
+}
+
+void MainWindow::initMenuFromSettings() {
+    Settings *settings = Settings::getInstance();
+    SettingsMaps smaps = settings->settingsMaps();
+
+    bool centeringGpsParameter= smaps.centeringGps();
+    this->ui->actionMapCenteringGps->setChecked(centeringGpsParameter);
+    enableCenteringGps(centeringGpsParameter);
+
+    SettingsGps sgps = settings->settingsGps();
+    this->ui->actionDevicesEnableGps->setChecked(sgps.enabled());
+
+    SettingsSonar ssonar = settings->settingsSonar();
+    this->ui->actionDevicesEnableSounder->setChecked(ssonar.enabled());
+}
+
+void MainWindow::enableCenteringGps(bool enable = true){
+    if(enable)
+        connect(_gps, SIGNAL(positionUpdated(QPointF)), ui->graphicsView, SLOT(updatePosition(QPointF)));
+    else
+        disconnect(_gps, SIGNAL(positionUpdated(QPointF)), ui->graphicsView, SLOT(updatePosition(QPointF)));
 }
 
 void MainWindow::updateMapCb(){
@@ -211,19 +250,21 @@ void MainWindow::updateLayerCb(){
     GraphicsMap * mapSelected = _mapManager.item(_mapManager.mapSelected());
     if(mapSelected){
         if(_lastLayersItems != mapSelected->layers()){
+            if(mapSelected->layerSelected().isEmpty()) {
+                mapSelected->selectLayer(mapSelected->defaultLayer());
+            }
+
             // update combobox
+            disconnect(_cbLayers, SIGNAL(currentIndexChanged(QString)), this, SLOT(cbLayersIndexChanged(QString)));
             _cbLayers->clear();
             _cbLayers->addItems(mapSelected->layers());
+            connect(_cbLayers, SIGNAL(currentIndexChanged(QString)), this, SLOT(cbLayersIndexChanged(QString)));
+
             _lastLayersItems = mapSelected->layers();
         }
 
-        int ilayer = _cbLayers->findText(mapSelected->layerSelected());
-        if(ilayer != -1){
-            _cbLayers->setCurrentIndex(ilayer);
-        }
-        else{
-            _cbLayers->setCurrentIndex(0);
-        }
+        int index = _cbLayers->findText(mapSelected->layerSelected());
+        _cbLayers->setCurrentIndex((index == -1) ? 0 : index);
     }
     else{
         _cbLayers->clear();
@@ -462,6 +503,14 @@ void MainWindow::triggerTool(QAction * action){
                     }
                 }
             }
+        }
+
+        else if(action == ui->actionZoomIn) {
+            ui->graphicsView->zoomIn();
+        }
+
+        else if(action == ui->actionZoomOut) {
+            ui->graphicsView->zoomOut();
         }
 
         else goto bdrawing;
@@ -732,6 +781,23 @@ void MainWindow::triggerMenu(QAction * action){
             updateToolbarsMenus();
         }
 
+        else if(action == ui->actionSelectDefaultLayer) {
+
+            QString map = _mapManager.mapSelected();
+            GraphicsMap * mapItem = _mapManager.item(map);
+            QStringList layers = mapItem->layers();
+            SelectItemDialog dialog(this);
+            QString defaultLayer = mapItem->defaultLayer();
+
+            dialog.setItemsList(layers);
+            dialog.setWindowTitle(TITLE24);
+            dialog.setButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+            dialog.setItemSelected(defaultLayer);
+            if(dialog.exec() == QDialog::Accepted){
+                mapItem->setDefaultLayer(dialog.itemSelected());
+            }
+        }
+
         else if(action == ui->actionMapInsertIconDefinition){
             try{
                 QString filepath = QFileDialog::getOpenFileName(this, TITLE16, getUserDocumentsLocation(), TEXT26+"(*.dxf *.pml)");
@@ -799,10 +865,7 @@ void MainWindow::triggerMenu(QAction * action){
         }
 
         else if(action == ui->actionMapCenteringGps){
-            if(ui->actionMapCenteringGps->isChecked())
-                connect(_gps, SIGNAL(positionUpdated(QPointF)), ui->graphicsView, SLOT(updatePosition(QPointF)));
-            else
-                disconnect(_gps, SIGNAL(positionUpdated(QPointF)), ui->graphicsView, SLOT(updatePosition(QPointF)));
+            enableCenteringGps(ui->actionMapCenteringGps->isChecked());
         }
 
         else if(action == ui->actionDbEditTables){
@@ -943,4 +1006,34 @@ void MainWindow::addPointXYZ(QPointF position){
         VectorsWriter writer(filename, 1);
         writer.writeVertex(DVertex(position.x(), position.y(), height));
     }
+}
+
+void MainWindow::addIconAuto() {
+    try {
+        GraphicsMap * map = _mapManager.item(_cbMaps->currentText());
+        if(!map) throw CubException(BRIEF28, ERROR24, "MainWindow::addIconAuto");
+
+        GraphicsMapLayer * layer = map->layerItem(_cbLayers->currentText());
+        if(!layer) throw CubException(BRIEF28, ERROR25, "MainWindow::addIconAuto");
+
+        GraphicsMapIconDef * icondef = map->iconDefItem(_cbIcons->currentText());
+        if(!icondef) throw CubException(BRIEF28, ERROR26, "MainWindow::addIconAuto");
+
+        GraphicsIconItem * icon = new GraphicsIconItem;
+        QDate date = QDate::currentDate();
+
+        icon->setIconDef(icondef);
+        icon->setDate(date.toString("dd/MM/yyyy"));
+        icon->setPos(_currentGpsPosition);
+        icon->setRotation(0);
+        layer->addToLayer(icon);
+    } catch(CubException &e) {
+        ErrorDialog::errorDialog(this, e);
+    }
+
+    QMessageBox::information(this, TITLE14, MESSAGE11);
+}
+
+void MainWindow::updateCurrentGpsPosition(QPointF position) {
+    _currentGpsPosition = position;
 }

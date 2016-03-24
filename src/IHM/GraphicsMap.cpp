@@ -121,6 +121,15 @@ int GraphicsMap::layersItemsCount() const{
     return cpt;
 }
 
+void GraphicsMap::setDefaultLayer(const QString &layername) {
+    _defaultLayer = layername;
+    setEdited(true);
+}
+
+QString GraphicsMap::defaultLayer() const {
+    return _defaultLayer;
+}
+
 QMap<QString, GraphicsMeshImageItem*> GraphicsMap::meshes(){
     QMap<QString, GraphicsMeshImageItem*> meshes;
     foreach(QGraphicsItem * item, childItems()){

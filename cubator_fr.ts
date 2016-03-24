@@ -345,6 +345,44 @@
     </message>
 </context>
 <context>
+    <name>GpsInfoWidget</name>
+    <message>
+        <location filename="src/IHM/ui/GpsInfoWidget.ui" line="20"/>
+        <source>Form</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="src/IHM/ui/GpsInfoWidget.ui" line="42"/>
+        <source>Positionnement GPS</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="src/IHM/ui/GpsInfoWidget.ui" line="53"/>
+        <source>X :</source>
+        <translation>X :</translation>
+    </message>
+    <message>
+        <location filename="src/IHM/ui/GpsInfoWidget.ui" line="60"/>
+        <source>Y :</source>
+        <translation>Y :</translation>
+    </message>
+    <message>
+        <location filename="src/IHM/ui/GpsInfoWidget.ui" line="67"/>
+        <source>Altitude :</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="src/IHM/ui/GpsInfoWidget.ui" line="74"/>
+        <source>Satellites :</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="src/IHM/ui/GpsInfoWidget.ui" line="81"/>
+        <source>DGPS :</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
     <name>InputIntToStringDialog</name>
     <message>
         <location filename="src/IHM/ui/InputIntToStringDialog.ui" line="26"/>
@@ -370,12 +408,12 @@
         <translation>Calques</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="75"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="76"/>
         <source>Definitions of icons</source>
         <translation>Définitions d&apos;icônes</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="82"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="83"/>
         <source>Meshes</source>
         <translation>Maillages</translation>
     </message>
@@ -384,368 +422,403 @@
         <translation type="vanished">Images</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="101"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="102"/>
         <source>Database</source>
         <translation>Base de données</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="110"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="111"/>
         <source>Devices</source>
         <translation>Périphériques</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="117"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="118"/>
         <source>Tools</source>
         <translation>Outils</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="124"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="125"/>
         <source>File</source>
         <translation>Fichier</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="130"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="131"/>
         <source>AutoDepth</source>
         <translation>Profondeur auto</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="145"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="146"/>
         <source>toolBar</source>
         <translation>Barre d&apos;outils</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="188"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="192"/>
         <source>toolBar_2</source>
         <translation>Barre d&apos;outils 2</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="202"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="206"/>
         <source>CenteringGPS</source>
         <translation>Centrage GPS</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="205"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="209"/>
         <source>Centering map with GPS position.</source>
         <translation>Centrer carte avec la position GPS.</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="210"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="214"/>
         <source>Edit tables</source>
         <translation>Editer tables</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="213"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="217"/>
         <source>Edit tables.</source>
         <translation>Editer tables.</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="218"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="222"/>
         <source>Show table</source>
         <translation>Afficher table</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="221"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="225"/>
         <source>Edit tables contents.</source>
         <translation>Editer le contenu des tables</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="229"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="233"/>
         <source>SimulateGps</source>
         <translation>Simuler GPS</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="232"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="236"/>
         <source>Simulate gps</source>
         <translation>Simuler GPS</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="240"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="244"/>
         <source>EnableGps</source>
         <translation>Activer GPS</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="243"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="247"/>
         <source>Enable gps.</source>
         <translation>Activer GPS.</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="251"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="255"/>
         <source>EnableSounder</source>
         <translation>Activer sonar</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="256"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="260"/>
         <source>Settings</source>
         <translation>Paramètres</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="259"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="263"/>
         <source>Settings.</source>
         <translation>Paramètres.</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="268"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="272"/>
         <source>SelectTool</source>
         <translation>Outil de sélection</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="277"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="281"/>
         <source>MoveTool</source>
         <translation>Outil de déplacement</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="286"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="290"/>
         <source>SaveTool</source>
         <translation>Outil de sauvegarde</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="295"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="299"/>
         <source>PointAddTool</source>
         <translation>Outil de dessin de point</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="304"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="308"/>
         <source>LineAddTool</source>
         <translation>Outil de dessin de ligne</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="313"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="317"/>
         <source>PolylineAddTool</source>
         <translation>Outil de dessin de polyligne</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="322"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="326"/>
         <source>TextAddTool</source>
         <translation>Outil de dessin de texte</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="331"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="335"/>
         <source>FillTool</source>
         <translation>Outil de dessin de remplissage</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="340"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="344"/>
         <source>ColorSelectTool</source>
         <translation>Outil de sélection de la couleur</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="349"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="353"/>
         <source>LineWidthTool</source>
         <translation>Outil de sélection de l&apos;épaisseur de ligne</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="358"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="362"/>
         <source>FontTool</source>
         <translation>Outil de sélection de police</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="367"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="371"/>
         <source>SettingsTool</source>
         <translation>Outil de paramétrage</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="376"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="380"/>
         <source>IconAddTool</source>
         <translation>Outil d&apos;ajout d&apos;icône</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="385"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="389"/>
         <source>IconXYAddTool</source>
         <translation>Outil d&apos;ajout d&apos;icône (coordonnées)</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="398"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="402"/>
         <source>RecordTool</source>
         <translation>Outil d&apos;enregistrement (Bathymétrie)</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="407"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="411"/>
         <source>MeshTool</source>
         <translation>Outil de calcul de maillage</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="416"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="420"/>
         <source>VolumeTool</source>
         <translation>Outil de calcul de volume</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="421"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="425"/>
         <source>Exit</source>
         <translation>Fermer</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="430"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="434"/>
         <source>actionSaveAllTool</source>
         <translation>actionEnregistrerTout</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="438"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="442"/>
         <source>Simulate Sounder</source>
         <translation>Simuler sonar</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="443"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="447"/>
         <source>Select Table</source>
         <translation>Sélectionner table</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="451"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="455"/>
         <source>Enable</source>
         <translation>Activer</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="456"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="460"/>
         <source>Add file</source>
         <translation>Ajouter fichier</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="461"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="465"/>
         <source>New file</source>
         <translation>Nouveau fichier</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="466"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="470"/>
         <source>Save map</source>
         <translation>Enregistrer carte</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="471"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="475"/>
         <source>Save all files</source>
         <translation>Enregistrer toutes les cartes</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="476"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="480"/>
         <source>Remove file</source>
         <translation>Supprimer fichier</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="481"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="485"/>
         <source>Save map as</source>
         <translation>Enregistrer carte sous</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="486"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="490"/>
         <source>Select maps visible</source>
         <translation>Sélectionner cartes visibles</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="491"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="495"/>
         <source>Add File XYZ</source>
         <translation>Ajouter fichier XYZ</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="496"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="500"/>
         <source>Convert map file</source>
         <translation>Convertir fichier carte</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="501"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="505"/>
         <source>Add layer</source>
         <translation>Ajouter calque</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="506"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="510"/>
         <source>Remove layer</source>
         <translation>Supprimer calque</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="511"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="515"/>
         <source>Visibility</source>
         <translation>Visibilité</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="516"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="520"/>
         <source>Elevation</source>
         <translation>Elévation</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="521"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="525"/>
         <source>Opacity</source>
         <translation>Opacité</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="526"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="530"/>
         <source>Editable</source>
         <translation>Editable</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="531"/>
-        <location filename="src/IHM/ui/MainWindow.ui" line="559"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="535"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="563"/>
         <source>Insert definition</source>
         <translation>Insérer définition</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="536"/>
-        <location filename="src/IHM/ui/MainWindow.ui" line="564"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="540"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="568"/>
         <source>Remove definition</source>
         <translation>Supprimer définition</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="541"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="545"/>
         <source>Insert mesh</source>
         <translation>Insérer maillage</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="546"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="550"/>
         <source>Remove mesh</source>
         <translation>Supprimer maillage</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="554"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="558"/>
         <source>Centering Gps</source>
         <translation>Centrage GPS</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="573"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="577"/>
         <source>MeasureAddTool</source>
         <translation>Outil de mesure</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="576"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="580"/>
         <source>Add measure</source>
         <translation>Ajouter mesure</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="581"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="585"/>
         <source>Convert to NGF</source>
         <translation>Convertir en NGF</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="590"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="594"/>
         <source>Add point XYZ</source>
         <translation>Ajouter point XYZ</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="599"/>
-        <location filename="src/IHM/ui/MainWindow.ui" line="602"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="603"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="606"/>
         <source>Add point XY</source>
         <translation>Ajouter point XY</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="611"/>
-        <location filename="src/IHM/ui/MainWindow.ui" line="614"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="615"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="618"/>
         <source>Print in a picture (PNG)</source>
         <translation>Imprimer dans une image (PNG)</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="619"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="623"/>
         <source>Insert picture</source>
         <translation>Insérer une image</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="624"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="628"/>
         <source>Remove picture</source>
         <translation>Supprimer une image</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="633"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="637"/>
         <source>actionPictureTool</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/MainWindow.ui" line="636"/>
+        <location filename="src/IHM/ui/MainWindow.ui" line="640"/>
         <source>Add a picture</source>
         <translation>Ajoute une image</translation>
+    </message>
+    <message>
+        <location filename="src/IHM/ui/MainWindow.ui" line="649"/>
+        <source>Zoom In</source>
+        <translation>Zoom avant</translation>
+    </message>
+    <message>
+        <location filename="src/IHM/ui/MainWindow.ui" line="652"/>
+        <source>Zoom in</source>
+        <translation>Zoom avant</translation>
+    </message>
+    <message>
+        <location filename="src/IHM/ui/MainWindow.ui" line="655"/>
+        <source>+</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="src/IHM/ui/MainWindow.ui" line="664"/>
+        <source>Zoom Out</source>
+        <translation>Zoom arrière</translation>
+    </message>
+    <message>
+        <location filename="src/IHM/ui/MainWindow.ui" line="667"/>
+        <source>Zoom out</source>
+        <translation>Zoom arrière</translation>
+    </message>
+    <message>
+        <location filename="src/IHM/ui/MainWindow.ui" line="670"/>
+        <source>-</source>
+        <translation>-</translation>
+    </message>
+    <message>
+        <location filename="src/IHM/ui/MainWindow.ui" line="675"/>
+        <source>Select default layer</source>
+        <translation>Sélectionner le calque par défaut</translation>
     </message>
 </context>
 <context>
@@ -867,6 +940,24 @@
     </message>
 </context>
 <context>
+    <name>PositionWidget</name>
+    <message>
+        <location filename="src/IHM/ui/PositionWidget.ui" line="26"/>
+        <source>Form</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="src/IHM/ui/PositionWidget.ui" line="41"/>
+        <source>X:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="src/IHM/ui/PositionWidget.ui" line="48"/>
+        <source>Y:</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
     <name>ProgressDialog</name>
     <message>
         <location filename="src/IHM/ui/ProgressDialog.ui" line="14"/>
@@ -901,6 +992,34 @@
         <source>The ellipsoid is unknown !</source>
         <translation>L&apos;ellipsoïde est inconnue !</translation>
     </message>
+    <message>
+        <location filename="src/IHM/SearchTextWidget.cpp" line="111"/>
+        <source>Error in loading the search text tool</source>
+        <translation>Erreur lors du chargement de l&apos;outil de recherche</translation>
+    </message>
+    <message>
+        <location filename="src/IHM/SearchTextWidget.cpp" line="111"/>
+        <source>The scene element is not found</source>
+        <translation>L&apos;élément scène est introuvable</translation>
+    </message>
+</context>
+<context>
+    <name>SearchTextWidget</name>
+    <message>
+        <location filename="src/IHM/ui/SearchTextWidget.ui" line="26"/>
+        <source>Form</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="src/IHM/ui/SearchTextWidget.ui" line="62"/>
+        <source>exactly</source>
+        <translation>exactement</translation>
+    </message>
+    <message>
+        <location filename="src/IHM/ui/SearchTextWidget.ui" line="93"/>
+        <source>Result</source>
+        <translation>Résultat</translation>
+    </message>
 </context>
 <context>
     <name>SelectItemDialog</name>
@@ -923,39 +1042,39 @@
         <translation>Cartes</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/SettingsDialog.ui" line="60"/>
+        <location filename="src/IHM/ui/SettingsDialog.ui" line="80"/>
         <location filename="src/IHM/ui/SettingsDialog.ui" line="190"/>
         <source>Remove</source>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/SettingsDialog.ui" line="80"/>
+        <location filename="src/IHM/ui/SettingsDialog.ui" line="100"/>
         <location filename="src/IHM/ui/SettingsDialog.ui" line="183"/>
         <source>Add</source>
         <translation>Ajouter</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/SettingsDialog.ui" line="89"/>
+        <location filename="src/IHM/ui/SettingsDialog.ui" line="68"/>
         <source>Centering Gps (by default)</source>
         <translation>Centrage GPS (par défaut)</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/SettingsDialog.ui" line="96"/>
+        <location filename="src/IHM/ui/SettingsDialog.ui" line="122"/>
         <source>Enable changes (by default)</source>
         <translation>Autoriser modifications (par défaut)</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/SettingsDialog.ui" line="103"/>
+        <location filename="src/IHM/ui/SettingsDialog.ui" line="139"/>
         <source>Map selected (by default)</source>
         <translation>Carte sélectionnée (par défaut)</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/SettingsDialog.ui" line="133"/>
+        <location filename="src/IHM/ui/SettingsDialog.ui" line="146"/>
         <source>Define Center View</source>
         <translation>Définir le centre de la vue</translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/SettingsDialog.ui" line="140"/>
+        <location filename="src/IHM/ui/SettingsDialog.ui" line="132"/>
         <location filename="src/IHM/ui/SettingsDialog.ui" line="548"/>
         <location filename="src/IHM/ui/SettingsDialog.ui" line="620"/>
         <location filename="src/IHM/ui/SettingsDialog.ui" line="842"/>
@@ -963,7 +1082,7 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="src/IHM/ui/SettingsDialog.ui" line="163"/>
+        <location filename="src/IHM/ui/SettingsDialog.ui" line="156"/>
         <location filename="src/IHM/ui/SettingsDialog.ui" line="555"/>
         <location filename="src/IHM/ui/SettingsDialog.ui" line="627"/>
         <location filename="src/IHM/ui/SettingsDialog.ui" line="868"/>
@@ -1449,7 +1568,7 @@ Do you really want to continue ?</source>
     </message>
     <message>
         <location filename="src/Messages.h" line="71"/>
-        <location filename="src/Messages.h" line="184"/>
+        <location filename="src/Messages.h" line="185"/>
         <source>Select line width</source>
         <translation>Sélectionner l&apos;épaisseur de ligne</translation>
     </message>
@@ -1529,467 +1648,472 @@ Do you really want to continue ?</source>
         <translation>Sélectionner un fichier image</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="88"/>
+        <location filename="src/Messages.h" line="87"/>
+        <source>Select the default layer</source>
+        <translation>Sélectionner le calque par défaut</translation>
+    </message>
+    <message>
+        <location filename="src/Messages.h" line="89"/>
         <source>Unknown error !</source>
         <translation>Erreur inconnue !</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="89"/>
+        <location filename="src/Messages.h" line="90"/>
         <source>triangles.length() &lt; trimax !</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="90"/>
+        <location filename="src/Messages.h" line="91"/>
         <source>The points are aligned !</source>
         <translation>Les points sont alignés !</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="91"/>
+        <location filename="src/Messages.h" line="92"/>
         <source>The argument &apos;triangleId&apos; is invalid !</source>
         <translation>L&apos;argument &apos;triangleId&apos; est invalide !</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="92"/>
+        <location filename="src/Messages.h" line="93"/>
         <source>The argument &apos;vectorId&apos; is invalid !</source>
         <translation>L&apos;argument &apos;vectorId&apos; est invalide !</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="93"/>
+        <location filename="src/Messages.h" line="94"/>
         <source>Divided by zero !</source>
         <translation>Division par zéro !</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="94"/>
+        <location filename="src/Messages.h" line="95"/>
         <source>Pointer isn&apos;t initialized !</source>
         <translation>Un pointeur n&apos;a pas été initialisé !</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="95"/>
+        <location filename="src/Messages.h" line="96"/>
         <source>The list of triangles is empty !</source>
         <translation>La liste de triangles est vide !</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="96"/>
+        <location filename="src/Messages.h" line="97"/>
         <source>The table already exists !</source>
         <translation>La table existe déjà !</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="97"/>
+        <location filename="src/Messages.h" line="98"/>
         <source>The database not contains this table !</source>
         <translation>La base de données ne contient pas cette table !</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="98"/>
+        <location filename="src/Messages.h" line="99"/>
         <source>The map is unknown !</source>
         <translation>La carte est inconnue !</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="99"/>
+        <location filename="src/Messages.h" line="100"/>
         <source>The layer already exists !</source>
         <translation>Le calque existe déjà !</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="100"/>
+        <location filename="src/Messages.h" line="101"/>
         <source>The layer doesn&apos;t exists !</source>
         <translation>Le calque n&apos;existe pas !</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="101"/>
+        <location filename="src/Messages.h" line="102"/>
         <source>The definition of the icon already exists !</source>
         <translation>La définition de l&apos;icône existe déjà !</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="102"/>
+        <location filename="src/Messages.h" line="103"/>
         <source>The definition of the icon doesn&apos;t exists !</source>
         <translation>La définition de l&apos;icône n&apos;existe pas !</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="103"/>
+        <location filename="src/Messages.h" line="104"/>
         <source>The definition of the boat already exists !</source>
         <translation>La définition du bateau existe déjà !</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="104"/>
+        <location filename="src/Messages.h" line="105"/>
         <source>The definition of the boat doesn&apos;t exists !</source>
         <translation>La définition du bateau n&apos;existe pas !</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="105"/>
+        <location filename="src/Messages.h" line="106"/>
         <source>The map is already loaded !</source>
         <translation>La carte est déjà chargée !</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="106"/>
+        <location filename="src/Messages.h" line="107"/>
         <source>The layer name is empty !</source>
         <translation>Le nom du calque est vide !</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="107"/>
+        <location filename="src/Messages.h" line="108"/>
         <source>The layer name already exists !</source>
         <translation>Le nom du calque existe déjà !</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="108"/>
+        <location filename="src/Messages.h" line="109"/>
         <source>Error loading translation file !</source>
         <translation>Erreur de chargement du fichier de traduction !</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="109"/>
+        <location filename="src/Messages.h" line="110"/>
         <source>Error in reading of code !</source>
         <translation>Erreur de lecture du code !</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="110"/>
+        <location filename="src/Messages.h" line="111"/>
         <source>Unable to get the pointer of the map !</source>
         <translation>Impossible de récupérer le pointeur de la carte !</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="111"/>
+        <location filename="src/Messages.h" line="112"/>
         <source>Unable to get the pointer of the layer !</source>
         <translation>Impossible de récupérer le pointeur du calque !</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="112"/>
+        <location filename="src/Messages.h" line="113"/>
         <source>Unable to get the pointer of the icon definition !</source>
         <translation>Impossible de récupérer le pointeur de la définition d&apos;icône !</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="113"/>
+        <location filename="src/Messages.h" line="114"/>
         <source>Splash picture does not exist !</source>
         <translation>L&apos;image splash n&apos;existe pas !</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="115"/>
+        <location filename="src/Messages.h" line="116"/>
         <source>Height : </source>
         <translation>Hauteur : </translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="116"/>
+        <location filename="src/Messages.h" line="117"/>
         <source>Filename : </source>
         <translation>Nom du fichier : </translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="117"/>
+        <location filename="src/Messages.h" line="118"/>
         <source>Longitude : </source>
         <translation>Longitude : </translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="118"/>
+        <location filename="src/Messages.h" line="119"/>
         <source>Latitude : </source>
         <translation>Latitude : </translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="119"/>
+        <location filename="src/Messages.h" line="120"/>
         <source>Baudrates : </source>
         <translation>Vitesse de transmission : </translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="120"/>
+        <location filename="src/Messages.h" line="121"/>
         <source>Data bits : </source>
         <translation>Bits de données : </translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="121"/>
+        <location filename="src/Messages.h" line="122"/>
         <source>Stop bits : </source>
         <translation>Bits de stop : </translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="122"/>
+        <location filename="src/Messages.h" line="123"/>
         <source>Parity : </source>
         <translation>Parité : </translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="123"/>
+        <location filename="src/Messages.h" line="124"/>
         <source>Flow control : </source>
         <translation>Contrôle de flux : </translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="124"/>
+        <location filename="src/Messages.h" line="125"/>
         <source>Maps files </source>
         <translation>Fichiers cartes</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="125"/>
+        <location filename="src/Messages.h" line="126"/>
         <source>Angle : </source>
         <translation>Angle : </translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="126"/>
+        <location filename="src/Messages.h" line="127"/>
         <source>Date : </source>
         <translation>Date :</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="127"/>
+        <location filename="src/Messages.h" line="128"/>
         <source>File : </source>
         <translation>Fichier : </translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="128"/>
+        <location filename="src/Messages.h" line="129"/>
         <source>Comments : </source>
         <translation>Commentaires : </translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="129"/>
+        <location filename="src/Messages.h" line="130"/>
         <source>Details : </source>
         <translation>Détails : </translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="130"/>
+        <location filename="src/Messages.h" line="131"/>
         <source>Method : </source>
         <translation>Méthode : </translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="131"/>
+        <location filename="src/Messages.h" line="132"/>
         <source>Timeout</source>
         <translation>Temps dépassé</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="132"/>
+        <location filename="src/Messages.h" line="133"/>
         <source>Inconsistent</source>
         <translation>Données incohérentes</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="133"/>
+        <location filename="src/Messages.h" line="134"/>
         <source>Surface : </source>
         <translation>Surface : </translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="134"/>
+        <location filename="src/Messages.h" line="135"/>
         <source>Volume : </source>
         <translation>Volume : </translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="135"/>
+        <location filename="src/Messages.h" line="136"/>
         <source>Map</source>
         <translation>Carte</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="136"/>
+        <location filename="src/Messages.h" line="137"/>
         <source>Layer</source>
         <translation>Calque</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="137"/>
+        <location filename="src/Messages.h" line="138"/>
         <source>Icon</source>
         <translation>Icône</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="138"/>
+        <location filename="src/Messages.h" line="139"/>
         <source>Boat</source>
         <translation>Bateau</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="139"/>
+        <location filename="src/Messages.h" line="140"/>
         <source>Table</source>
         <translation>Table</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="140"/>
+        <location filename="src/Messages.h" line="141"/>
         <source>Layer name : </source>
         <translation>Nom du calque : </translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="141"/>
+        <location filename="src/Messages.h" line="142"/>
         <source>Icons files</source>
         <translation>Fichiers d&apos;icônes</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="142"/>
+        <location filename="src/Messages.h" line="143"/>
         <source>Length : </source>
         <translation>Longueur : </translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="143"/>
+        <location filename="src/Messages.h" line="144"/>
         <source>Index : </source>
         <translation>Index : </translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="144"/>
+        <location filename="src/Messages.h" line="145"/>
         <source>Boats files : </source>
         <translation>Fichiers de bateaux : </translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="145"/>
+        <location filename="src/Messages.h" line="146"/>
         <source>Line : </source>
         <translation>Ligne : </translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="146"/>
+        <location filename="src/Messages.h" line="147"/>
         <source>Column : </source>
         <translation>Colonne : </translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="147"/>
+        <location filename="src/Messages.h" line="148"/>
         <source>Table : </source>
         <translation>Table : </translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="148"/>
+        <location filename="src/Messages.h" line="149"/>
         <source>Line width : </source>
         <translation>Epaisseur de ligne : </translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="149"/>
+        <location filename="src/Messages.h" line="150"/>
         <source>Images </source>
         <translation>Images</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="150"/>
+        <location filename="src/Messages.h" line="151"/>
         <source>Picture files </source>
         <translation>Fichiers image</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="152"/>
+        <location filename="src/Messages.h" line="153"/>
         <source>MoveTool</source>
         <translation>Outil de déplacement</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="153"/>
+        <location filename="src/Messages.h" line="154"/>
         <source>Insert record</source>
         <translation>Insérer enregistrement</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="154"/>
+        <location filename="src/Messages.h" line="155"/>
         <source>Remove record(s)</source>
         <translation>Supprimer enregistrement(s)</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="155"/>
+        <location filename="src/Messages.h" line="156"/>
         <source>Clear table</source>
         <translation>Vider table</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="156"/>
+        <location filename="src/Messages.h" line="157"/>
         <source>Position</source>
         <translation>Position</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="157"/>
+        <location filename="src/Messages.h" line="158"/>
         <source>Date</source>
         <translation>Date</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="158"/>
+        <location filename="src/Messages.h" line="159"/>
         <source>Rotation</source>
         <translation>Rotation</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="159"/>
+        <location filename="src/Messages.h" line="160"/>
         <source>Delete</source>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="160"/>
+        <location filename="src/Messages.h" line="161"/>
         <source>Color</source>
         <translation>Couleur</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="161"/>
+        <location filename="src/Messages.h" line="162"/>
         <source>Font</source>
         <translation>Police d&apos;écriture</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="162"/>
+        <location filename="src/Messages.h" line="163"/>
         <source>Show text</source>
         <translation>Afficher texte</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="163"/>
+        <location filename="src/Messages.h" line="164"/>
         <source>Show mesh</source>
         <translation>Afficher maillage</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="164"/>
+        <location filename="src/Messages.h" line="165"/>
         <source>Color text</source>
         <translation>Couleur du texte</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="165"/>
+        <location filename="src/Messages.h" line="166"/>
         <source>Color mesh</source>
         <translation>Couleur du maillage</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="166"/>
+        <location filename="src/Messages.h" line="167"/>
         <source>Line thickness</source>
         <translation>Epaisseur de ligne</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="167"/>
+        <location filename="src/Messages.h" line="168"/>
         <source>Move to left</source>
         <translation>Déplacer à gauche</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="168"/>
+        <location filename="src/Messages.h" line="169"/>
         <source>Move to right</source>
         <translation>Déplacer à droite</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="169"/>
+        <location filename="src/Messages.h" line="170"/>
         <source>Convert map coordinates</source>
         <translation>Convertir -&gt; coord carto</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="170"/>
+        <location filename="src/Messages.h" line="171"/>
         <source>Convert GPS coordinates</source>
         <translation>Convertir -&gt; coord GPS</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="171"/>
+        <location filename="src/Messages.h" line="172"/>
         <source>Define first anchor</source>
         <translation>Définir la première ancre</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="172"/>
+        <location filename="src/Messages.h" line="173"/>
         <source>Define last anchor</source>
         <translation>Définir la dernière ancre</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="173"/>
+        <location filename="src/Messages.h" line="174"/>
         <source>Show anchors</source>
         <translation>Afficher les ancres</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="175"/>
+        <location filename="src/Messages.h" line="176"/>
         <source>Set the angle of the rotation.</source>
         <translation>Paramétrer l&apos;angle de rotation.</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="176"/>
+        <location filename="src/Messages.h" line="177"/>
         <source>Select line width for painting.</source>
         <translation>Sélectionner l&apos;épaisseur de ligne pour dessiner.</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="177"/>
+        <location filename="src/Messages.h" line="178"/>
         <source>Define the elevation of the layers.</source>
         <translation>Définir l&apos;élévation des calques.</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="178"/>
+        <location filename="src/Messages.h" line="179"/>
         <source>Define the opacity of the layers (pourcentage).</source>
         <translation>Définir l&apos;opacité des calques (pourcentage).</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="179"/>
+        <location filename="src/Messages.h" line="180"/>
         <source>This type of file is not editable.</source>
         <translation>Ce type de fichier n&apos;est pas éditable.</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="180"/>
+        <location filename="src/Messages.h" line="181"/>
         <source>Unable to assign the file to xml document.</source>
         <translation>Impossible d&apos;assigner ce fichier à un document XML.</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="181"/>
+        <location filename="src/Messages.h" line="182"/>
         <source>The shape should contain at least three points.</source>
         <translation>Le contour doit contenir au moins trois points.</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="182"/>
+        <location filename="src/Messages.h" line="183"/>
         <source>Select text color.</source>
         <translation>Sélectionner la couleur du texte.</translation>
     </message>
     <message>
-        <location filename="src/Messages.h" line="183"/>
+        <location filename="src/Messages.h" line="184"/>
         <source>Select mesh color.</source>
         <translation>Sélectionner la couleur du maillage.</translation>
     </message>

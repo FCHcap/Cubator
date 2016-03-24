@@ -93,6 +93,11 @@ void PmlReader::run(){
                 layer->setZValue(element.attribute("elevation", "0").toDouble());
                 layer->setOpacity(element.attribute("opacity", "1").toDouble());
                 layer->setVisible((bool) element.attribute("visibility", "1").toInt());
+                layer->setEditable((bool) element.attribute("editable", "0").toInt());
+
+                if(element.hasAttribute("default")) {
+                    map->setDefaultLayer(layer->name());
+                }
             }
 
             // Lecture des points XY
@@ -241,11 +246,17 @@ void PmlReader::run(){
 
                     QGraphicsEllipseItem * ellipseItem = new QGraphicsEllipseItem;
                     ellipseItem->setPen(readingPenAttributes(ellipse));
+                    if(ellipse.hasAttribute("brush_color")) {
+                        ellipseItem->setBrush(readingBrushAttributes(ellipse));
+                    }
 
                     if(icondef) icondef->addToGroup(ellipseItem);
                     else if(boatdef) boatdef->addToGroup(ellipseItem);
                     else layer->addToLayer(ellipseItem, 0);
 
+                    ellipseItem->setRect(readingRectf(ellipse));
+
+                    // Keeps the code below for compatibility with older version of pml files
                     for(int j=0; j<ellipse.childNodes().count(); j++){
                         if(ellipse.childNodes().at(j).isElement()){
                             QDomElement e1 = ellipse.childNodes().at(j).toElement();

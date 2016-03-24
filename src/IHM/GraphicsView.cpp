@@ -22,20 +22,6 @@ void GraphicsView::setScene(GraphicsScene *scene){
     QGraphicsView::setScene(scene);
 }
 
-void GraphicsView::keyPressEvent(QKeyEvent *event){
-
-    if(event->key() == Qt::Key_Plus){
-        _transform.scale(1.1, 1.1);
-        updateTransform();
-    }
-    else if(event->key() == Qt::Key_Minus){
-        _transform.scale(0.9, 0.9);
-        updateTransform();
-    }
-
-    QGraphicsView::keyPressEvent(event);
-}
-
 void GraphicsView::wheelEvent(QWheelEvent *event){
 
     if(_scene){
@@ -49,6 +35,19 @@ void GraphicsView::wheelEvent(QWheelEvent *event){
     }
 
     QGraphicsView::wheelEvent(event);
+}
+
+void GraphicsView::setScale(qreal scale) {
+    _transform.scale(scale, scale);
+    updateTransform();
+}
+
+void GraphicsView::zoomIn() {
+    setScale(1.1);
+}
+
+void GraphicsView::zoomOut() {
+    setScale(0.9);
 }
 
 void GraphicsView::updateTransform(){

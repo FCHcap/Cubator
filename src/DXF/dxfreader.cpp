@@ -100,6 +100,18 @@ bool dxfReader::readRec(int *codeData, bool skip) {
     return (filestr->good());
 }
 
+int dxfReader::pos() {
+    return filestr->tellg();
+}
+
+int dxfReader::size() {
+    int pos = filestr->tellg();
+    filestr->seekg(0, std::ios_base::end);
+    int size = filestr->tellg();
+    filestr->seekg(pos, std::ios_base::beg);
+    return size;
+}
+
 bool dxfReaderBinary::readCode(int *code) {
     unsigned short *int16p;
     char buffer[2];

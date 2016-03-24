@@ -1584,6 +1584,7 @@ bool dxfRW::processDxf() {
     //    section = secUnknown;
 
         emit processNameUpdated(PROCESS19);
+        this->size = reader->size();
         while (reader->readRec(&code, !binary)) {
             DBG(code); DBG(" processDxf\n");
             if (code == 0) {
@@ -1617,7 +1618,6 @@ bool dxfRW::processDxf() {
                     }
                 }
             }
-            //emit levelUpdated(reader->pos() * 100 / reader->size());
     /*    if (!more)
             return true;*/
         }
@@ -1694,7 +1694,7 @@ bool dxfRW::processTables() {
                 return true;  //found ENDSEC terminate
             }
         }
-        //emit levelUpdated(reader->pos() * 100 / reader->size());
+        emit levelUpdated(reader->pos() * 100 / this->size);
     }
     return true;
 }
@@ -1887,7 +1887,7 @@ bool dxfRW::processEntities(bool isblock) {
             } else
                 return false; //end of file without ENDSEC
         }
-        //emit levelUpdated(reader->pos() * 100 /reader->size());
+        emit levelUpdated(reader->pos() * 100 /this->size);
 
     } while (next);
     return true;
@@ -2413,7 +2413,7 @@ bool dxfRW::processObjects() {
             } else
                 return false; //end of file without ENDSEC
         }
-        //emit levelUpdated(reader->pos()*100/reader->size());
+        emit levelUpdated(reader->pos()*100/this->size);
     } while (next);
     return true;
 }

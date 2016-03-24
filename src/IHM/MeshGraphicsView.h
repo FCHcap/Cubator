@@ -10,6 +10,9 @@ class MeshGraphicsView : public QGraphicsView
 public:
     explicit MeshGraphicsView(QWidget *parent = 0);
     bool isMousePressed();
+    void zoomIn();
+    void zoomOut();
+    void setScale(qreal scale);
 
 signals:
     void spacePressed();

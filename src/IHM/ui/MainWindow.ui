@@ -69,6 +69,7 @@
      <addaction name="actionMapLayerElevation"/>
      <addaction name="actionMapLayerOpacity"/>
      <addaction name="actionMapLayerEditable"/>
+     <addaction name="actionSelectDefaultLayer"/>
     </widget>
     <widget class="QMenu" name="menuMapIconsDefinitions">
      <property name="title">
@@ -182,6 +183,9 @@
    <addaction name="actionPointXyzDbAddTool"/>
    <addaction name="separator"/>
    <addaction name="actionPrintInPng"/>
+   <addaction name="separator"/>
+   <addaction name="actionZoomIn"/>
+   <addaction name="actionZoomOut"/>
   </widget>
   <widget class="QToolBar" name="toolBarCb">
    <property name="windowTitle">
@@ -634,6 +638,41 @@
    </property>
    <property name="toolTip">
     <string>Add a picture</string>
+   </property>
+  </action>
+  <action name="actionZoomIn">
+   <property name="icon">
+    <iconset resource="../../../resources/Cubator.qrc">
+     <normaloff>:/icons/zoomIn.png</normaloff>:/icons/zoomIn.png</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom In</string>
+   </property>
+   <property name="toolTip">
+    <string>Zoom in</string>
+   </property>
+   <property name="shortcut">
+    <string>+</string>
+   </property>
+  </action>
+  <action name="actionZoomOut">
+   <property name="icon">
+    <iconset resource="../../../resources/Cubator.qrc">
+     <normaloff>:/icons/zoomOut.png</normaloff>:/icons/zoomOut.png</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom Out</string>
+   </property>
+   <property name="toolTip">
+    <string>Zoom out</string>
+   </property>
+   <property name="shortcut">
+    <string>-</string>
+   </property>
+  </action>
+  <action name="actionSelectDefaultLayer">
+   <property name="text">
+    <string>Select default layer</string>
    </property>
   </action>
  </widget>

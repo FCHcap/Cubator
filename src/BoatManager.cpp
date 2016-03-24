@@ -14,7 +14,12 @@ BoatManager::~BoatManager(){
     removeAllBoatsFiles();
 }
 
-void BoatManager::setScene(GraphicsScene *scene){ _scene = scene; if(scene) scene->addItem(&_boatItem);}
+void BoatManager::setScene(GraphicsScene *scene){
+    _scene = scene;
+    if(_scene != NULL) {
+        scene->addItem(&_boatItem);
+    }
+}
 
 void BoatManager::setParentWidget(QWidget *widget){ _widget = widget; }
 
@@ -66,13 +71,17 @@ void BoatManager::removeBoatFile(const QString &boatFile){
 
         GraphicsMapBoatDef * boatDefSelected = _boatItem.boatDef(); // Get the current boat definition pointer
 
+        // remove all boats definitions in this file
         foreach(QString boatName, boats.keys()){
             GraphicsMapBoatDef * boatDef = boats[boatName];
             if(boatDefSelected == boatDef){
+                // if the boat definition is currently used, select the next definition or sets it to null
                 if(_mBoatsDefs.count()){
                     Boats boats2 = _mBoatsDefs[0];
                     if(boats.size())
                         _boatItem.setBoatDef(boats2[0]);
+                } else {
+                    _boatItem.setBoatDef(NULL);
                 }
                 delete boatDef;
             }
@@ -123,6 +132,7 @@ QStringList BoatManager::boats(){
 
 void BoatManager::connectToGps(Gps *gps){
     connect(gps, SIGNAL(positionUpdated(QPointF)), this, SLOT(updateGpsPosition(QPointF)));
+    connect(gps, SIGNAL(positionRecovered(bool)), this, SLOT(updateDisplaying(bool)));
 }
 
 void BoatManager::showError(CubException e){
@@ -157,4 +167,8 @@ void BoatManager::finishBoatLoader(QString boatFile, GraphicsMap *graphics){
 
 void BoatManager::updateGpsPosition(QPointF position){
     _boatItem.setPos(position);
+}
+
+void BoatManager::updateDisplaying(bool displayed) {
+    _boatItem.setVisible(displayed);
 }

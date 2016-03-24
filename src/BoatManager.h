@@ -47,6 +47,7 @@ protected slots:
     void showError(CubException e);
     void finishBoatLoader(QString boatFile, GraphicsMap * graphics);
     void updateGpsPosition(QPointF);
+    void updateDisplaying(bool);
 
 protected:
     GraphicsScene *_scene;
