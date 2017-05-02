@@ -13,6 +13,7 @@ enum Tool{
     TPAINT,
     TICON,
     TMEASURE,
+    TAREA,
     TVOLUME,
     TPOINTXYZ,
     NO

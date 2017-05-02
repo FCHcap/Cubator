@@ -23,12 +23,14 @@ GraphicsVolumeItem::GraphicsVolumeItem(QGraphicsItem * parent) : GraphicsPolylin
 
     _pen.setStyle(Qt::DashDotLine);
     _pen.setColor(QColor(255,0,127));
-    _pen.setWidth(3);
+    _pen.setWidth(1);
 
     QFont font = _textItem.font();
-    font.setPointSize(4);
+    font.setPixelSize(5);
     _textItem.setFont(font);
     _textItem.setDefaultTextColor(QColor(255,0,127));
+
+    connect(this, SIGNAL(updateTextItem()), this, SLOT(onUpdateTextItemEvent()));
 }
 
 GraphicsVolumeItem::~GraphicsVolumeItem(){
@@ -53,7 +55,7 @@ qreal GraphicsVolumeItem::volume() const{
 
 void GraphicsVolumeItem::setFont(const QFont &font){
     _textItem.setFont(font);
-    updateTextItem();
+    emit updateTextItem();
 }
 
 QFont GraphicsVolumeItem::font() const{
@@ -119,7 +121,7 @@ void GraphicsVolumeItem::updateRects(){
             if(this->polylineContains(r)) _rectangles.append(r);
         }
     }
-    updateTextItem();
+    emit updateTextItem();
 }
 
 void GraphicsVolumeItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
@@ -219,7 +221,7 @@ void GraphicsVolumeItem::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
     update(boundingRect().united(childrenBoundingRect()));
 }
 
-void GraphicsVolumeItem::updateTextItem(){
+void GraphicsVolumeItem::onUpdateTextItemEvent(){
     QString text;
     text.append(TEXT18 + QString::number(_surface, 'f', 4) + " m2");
     if(_volume > DBL_MIN)
@@ -247,11 +249,11 @@ void GraphicsVolumeItem::addPoint(const QPointF &point){
 void GraphicsVolumeItem::setSurface(qreal surface){
     _surface = surface;
     _textItem.setVisible(1);
-    updateTextItem();
+    emit updateTextItem();
 }
 
 void GraphicsVolumeItem::setVolume(qreal volume){
     _volume = volume;
     _textItem.setVisible(1);
-    updateTextItem();
+    emit updateTextItem();
 }

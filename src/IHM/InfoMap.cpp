@@ -30,7 +30,11 @@ QString InfoMap::filepathToMap(const QString & filepath){
 
 QString InfoMap::filepathToExtension(const QString & filepath){
     QRegExp rx("[.](\\w{3})$");
-    rx.indexIn(filepath);
+    int pos = rx.indexIn(filepath);
+    QString out = "";
 
-    return rx.cap(1);
+    if(pos > -1) {
+        out = rx.cap(1);
+    }
+    return out;
 }

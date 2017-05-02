@@ -55,8 +55,11 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void contextMenuEvent(QGraphicsSceneContextMenuEvent *event);
 
-protected slots:
+signals:
     void updateTextItem();
+
+protected slots:
+    void onUpdateTextItemEvent();
 
 public slots:
     void addRect(const QRect &rect);

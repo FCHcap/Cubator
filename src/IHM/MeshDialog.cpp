@@ -192,20 +192,17 @@ void MeshDialog::writeTriangles(){
 void MeshDialog::writeImage(){
     enableTools(0);
 
-    double lme = QInputDialog::getDouble(this, TITLE18, TEXT27, 0, 0, 1000);
+    double lme = QInputDialog::getDouble(this, TITLE18, TEXT27, 0, -1000, 1000);
 
     ImageWriterProcess * iwp = new ImageWriterProcess;
-    //QThread * iwt = new QThread;
     iwp->setFilename(Data::imageFilename(ui->cbTable->currentText()));
     iwp->setVerticesList(_vertex);
     iwp->setMaximumSizeEdge(lme);
-    //iwp->connectToThread(iwt);
     connect(iwp, SIGNAL(levelUpdated(int)), ui->progressBar, SLOT(setValue(int)));
     connect(iwp, SIGNAL(processNameUpdated(QString)), ui->lProcessName, SLOT(setText(QString)));
     connect(iwp, SIGNAL(exceptionLaunched(CubException)), this, SLOT(showException(CubException)));
     connect(iwp, SIGNAL(finished()), this, SLOT(launchProcess()));
-    //iwp->moveToThread(iwt);
-    //iwt->start();
+
     iwp->start();
 }
 
@@ -434,15 +431,11 @@ void MeshDialog::showVertex(bool show){
         enableTools(0);
 
         VerticesLoadingProcess * vlp = new VerticesLoadingProcess();
-        //QThread * thread = new QThread;
-        vlp->setVertices(_vertex);
-        //vlp->connectToThread(thread);
+        vlp->setVertices(_vertex, false);
         connect(vlp, SIGNAL(levelUpdated(int)), ui->progressBar, SLOT(setValue(int)));
         connect(vlp, SIGNAL(processNameUpdated(QString)), ui->lProcessName, SLOT(setText(QString)));
         connect(vlp, SIGNAL(exceptionLaunched(CubException)), this, SLOT(showException(CubException)));
         connect(vlp, SIGNAL(verticesItemUpdated(QGraphicsItemGroup*)), this, SLOT(setVerticesItem(QGraphicsItemGroup*)));
-        //vlp->moveToThread(thread);
-        //thread->start();
         vlp->start();
     }
     else{
@@ -457,15 +450,11 @@ void MeshDialog::showTriangles(bool show){
         enableTools(0);
 
         TrianglesItemLoadingProcess * tlp = new TrianglesItemLoadingProcess;
-        //QThread * thread = new QThread();
         tlp->setVertices(_vertex);
-        //tlp->connectToThread(thread);
         connect(tlp, SIGNAL(levelUpdated(int)), ui->progressBar, SLOT(setValue(int)));
         connect(tlp, SIGNAL(processNameUpdated(QString)), ui->lProcessName, SLOT(setText(QString)));
         connect(tlp, SIGNAL(exceptionLaunched(CubException)), this, SLOT(showException(CubException)));
         connect(tlp, SIGNAL(trianglesItemUpdated(QGraphicsItemGroup*)), this, SLOT(setTrianglesItem(QGraphicsItemGroup*)));
-        //tlp->moveToThread(thread);
-        //thread->start();
         tlp->start();
     }
     else{

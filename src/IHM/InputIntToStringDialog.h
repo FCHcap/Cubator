@@ -22,6 +22,7 @@ public:
 
     void setDescription(const QString & description);
     void setRange(const int &min, const int &max);
+    void setStep(const int &step);
 
 protected:
     void accept();

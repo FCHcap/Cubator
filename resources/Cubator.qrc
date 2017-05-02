@@ -43,5 +43,6 @@
         <file>icons/right.png</file>
         <file>icons/zoomIn.png</file>
         <file>icons/zoomOut.png</file>
+        <file>icons/area.png</file>
     </qresource>
 </RCC>

@@ -3,6 +3,7 @@
 // QT
 #include <QThread>
 #include <QFileInfo>
+#include <QLocale>
 
 // CUBATOR
 #include <GraphicsHatchItem.h>
@@ -11,6 +12,7 @@
 #include <GraphicsMeshImageItem.h>
 #include <GraphicsIconItem.h>
 #include <GraphicsPictureItem.h>
+#include <GraphicsPointXYZItem.h>
 
 PmlWriter::PmlWriter(QObject * parent) : DefaultProcess(parent){
     _sortByType = 0;
@@ -30,15 +32,9 @@ void PmlWriter::sortByType(bool sortByType){
 void PmlWriter::run(){
 
     try{
-        //emit started();
-
         foreach(QString filepath, _list.keys()){
 
             QDomDocument doc("Pml");
-
-            // Creates header
-            QDomNode header = doc.createProcessingInstruction("xml","version=\"1.0\" encoding=\"UTF-8\"");
-            doc.insertBefore(header, doc.firstChild());
 
             //Header
             emit processNameUpdated(PROCESS13 + filepath);
@@ -59,16 +55,18 @@ void PmlWriter::run(){
                 GraphicsMapLayer * polylineLayer = map.addLayer("polylines", 0);
                 GraphicsMapLayer * textLayer = map.addLayer("text", 0);
                 GraphicsMapLayer * ellipseLayer = map.addLayer("ellipses", 0);
-                GraphicsMapLayer * meshLayer = map.addLayer("meshes", 0);
                 GraphicsMapLayer * iconLayer = map.addLayer("icons", 0);
+                GraphicsMapLayer * xyzLayer = map.addLayer("xyz", 0);
+                GraphicsMapLayer * meshLayer = map.addLayer("mesh", 0);
 
-                meshLayer->setZValue(0);
                 hatchLayer->setZValue(10);
                 polylineLayer->setZValue(20);
                 iconLayer->setZValue(30);
                 lineLayer->setZValue(40);
                 ellipseLayer->setZValue(50);
                 textLayer->setZValue(60);
+                xyzLayer->setZValue(70);
+                meshLayer->setZValue(0);
 
                 foreach(QGraphicsItem * item, pmlItem->childItems()){
                     if(item->type() == GraphicsMapLayer::Type){
@@ -127,14 +125,6 @@ void PmlWriter::run(){
                                 ellipseLayer->addToLayer(nellipse, 0);
                                 break;
                             }
-                            case GraphicsMeshImageItem::Type:
-                            {
-                                GraphicsMeshImageItem * mesh = qgraphicsitem_cast<GraphicsMeshImageItem*>(item2);
-                                GraphicsMeshImageItem * nmesh = new GraphicsMeshImageItem;
-                                nmesh->setTableName(mesh->tableName());
-                                meshLayer->addToLayer(nmesh, 0);
-                                break;
-                            }
                             case GraphicsIconItem::Type:
                             {
                                 GraphicsIconItem * icon = qgraphicsitem_cast<GraphicsIconItem*>(item2);
@@ -146,6 +136,38 @@ void PmlWriter::run(){
                                 iconLayer->addToLayer(nicon, 0);
                                 break;
                             }
+                            case GraphicsPointXYZItem::Type:
+                            {
+                                GraphicsPointXYZItem *point = qgraphicsitem_cast<GraphicsPointXYZItem*>(item2);
+                                GraphicsPointXYZItem *npoint = new GraphicsPointXYZItem(true);
+                                npoint->setVertex(point->vertex(), point->color());
+                                xyzLayer->addToLayer(npoint);
+                            }
+                            case GraphicsMeshItem::Type:
+                                GraphicsMeshItem *mesh = qgraphicsitem_cast<GraphicsMeshItem *>(item2);
+                                GraphicsMeshItem *nmesh = new GraphicsMeshItem;
+
+                                QGraphicsItemGroup *vertices = mesh->vertices();
+                                QGraphicsItemGroup *nvertices = new QGraphicsItemGroup(nmesh);
+                                nmesh->setVertices(nvertices);
+
+                                foreach (QGraphicsItem *temp_vertex, vertices->childItems()) {
+                                    GraphicsPointXYZItem *vertex = qgraphicsitem_cast<GraphicsPointXYZItem *>(temp_vertex);
+                                    GraphicsPointXYZItem *nv = new GraphicsPointXYZItem(vertex->displayDepth(), nvertices);
+                                    nv->setVertex(vertex->vertex(), vertex->color());
+                                }
+
+                                QGraphicsItemGroup *triangles = mesh->triangles();
+                                QGraphicsItemGroup *ntriangles = new QGraphicsItemGroup(nmesh);
+                                nmesh->setTriangles(ntriangles);
+
+                                foreach (QGraphicsItem *temp_line, triangles->childItems()) {
+                                    QGraphicsLineItem *line = qgraphicsitem_cast<QGraphicsLineItem*>(temp_line);
+                                    QGraphicsLineItem *nline = new QGraphicsLineItem(ntriangles);
+                                    nline->setLine(line->line());
+                                    nline->setPen(line->pen());
+                                }
+                                meshLayer->addToLayer(nmesh);
                             }
                         }
                     }
@@ -225,6 +247,8 @@ void PmlWriter::run(){
             QFile file(filepath);
             if(!file.open(QIODevice::WriteOnly | QIODevice::Truncate)) throw CubException(BRIEF06, TEXT01 + filepath, "PmlWriter::start");
             QTextStream out(&file);
+            out.setRealNumberNotation(QTextStream::FixedNotation);
+            out.setNumberFlags(QTextStream::ForcePoint);
             out << doc.toString();
             out.flush();
             file.close();
@@ -373,17 +397,6 @@ void PmlWriter::writeLayer(QDomDocument &doc, QDomElement &layer, const QGraphic
             break;
         }
 
-        case GraphicsMeshImageItem::Type:
-        {
-            GraphicsMeshImageItem * meshItem = qgraphicsitem_cast<GraphicsMeshImageItem*>(item);
-
-            QDomElement mesh = doc.createElement("mesh");
-            layer.appendChild(mesh);
-
-            mesh.setAttribute("table", (QString) meshItem->tableName());
-            break;
-        }
-
         case GraphicsIconItem::Type:
         {
             GraphicsIconItem * iconItem = qgraphicsitem_cast<GraphicsIconItem*>(item);
@@ -423,8 +436,50 @@ void PmlWriter::writeLayer(QDomDocument &doc, QDomElement &layer, const QGraphic
 
             volume.setAttribute("text_visible", volumeItem->textVisible());
             volume.setAttribute("mesh_visible", volumeItem->meshVisible());
+            break;
         }
 
+        case GraphicsPointXYZItem::Type:
+        {
+            GraphicsPointXYZItem *xyzitem = qgraphicsitem_cast<GraphicsPointXYZItem *>(item);
+
+            QDomElement xyzelt = doc.createElement("xyz");
+            layer.appendChild(xyzelt);
+
+            writeVertex(xyzelt, xyzitem->vertex());
+            xyzelt.setAttribute("color", xyzitem->color().name());
+            break;
+        }
+
+        case GraphicsMeshItem::Type:
+        {
+            GraphicsMeshItem *mitem = qgraphicsitem_cast<GraphicsMeshItem *>(item);
+
+            QGraphicsItemGroup *vertices = mitem->vertices();
+            QGraphicsItemGroup *triangles = mitem->triangles();
+
+            QDomElement meshNode = doc.createElement("mesh");
+            layer.appendChild(meshNode);
+
+            foreach (QGraphicsItem *temp_vertex, vertices->childItems()) {
+                GraphicsPointXYZItem *vertex = qgraphicsitem_cast<GraphicsPointXYZItem*>(temp_vertex);
+                QDomElement vertexNode = doc.createElement("vertex");
+                meshNode.appendChild(vertexNode);
+
+                writeVertex(vertexNode, vertex->vertex());
+                vertexNode.setAttribute("color", vertex->color().name());
+            }
+
+            foreach (QGraphicsItem *temp_line, triangles->childItems()) {
+                QGraphicsLineItem *line = qgraphicsitem_cast<QGraphicsLineItem*>(temp_line);
+                QDomElement lineNode = doc.createElement("line");
+                meshNode.appendChild(lineNode);
+
+                writeLine(lineNode, line->line());
+                writePenAttributes(lineNode, line->pen());
+            }
+            break;
+        }
         }
 
         _cpt++;
@@ -432,9 +487,22 @@ void PmlWriter::writeLayer(QDomDocument &doc, QDomElement &layer, const QGraphic
     }
 }
 
+void PmlWriter::writeLine(QDomElement &element, const QLineF &line) {
+    element.setAttribute("x1", (double) line.x1());
+    element.setAttribute("y1", (double) line.y1());
+    element.setAttribute("x2", (double) line.x2());
+    element.setAttribute("y2", (double) line.y2());
+}
+
 void PmlWriter::writePoint(QDomElement &element, const QPointF &point){
     element.setAttribute("x", (double) point.x());
     element.setAttribute("y", (double) point.y());
+}
+
+void PmlWriter::writeVertex(QDomElement &element, const DVertex &vertex) {
+    element.setAttribute("x", (double) vertex.x());
+    element.setAttribute("y", (double) vertex.y());
+    element.setAttribute("z", (double) vertex.z());
 }
 
 void PmlWriter::writeRect(QDomElement &element, const QRectF &rect){
@@ -459,10 +527,12 @@ void PmlWriter::writePenAttributes(QDomElement &element, const QPen &pen){
 
 void PmlWriter::writeBrushAttributes(QDomElement &element, const QBrush &brush){
     element.setAttribute("brush_color", (QString) brush.color().name());
+    element.setAttribute("brush_style", (int) brush.style());
 }
 
 void PmlWriter::writeFontAttributes(QDomElement &element, const QFont &font){
     element.setAttribute("font", (QString) font.toString());
+    element.setAttribute("font_psize", (int) font.pixelSize());
 }
 
 bool PmlWriter::compareFilepaths(const QString filepath1, const QString filepath2) {

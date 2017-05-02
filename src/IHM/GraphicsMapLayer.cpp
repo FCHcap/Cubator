@@ -3,6 +3,7 @@
 // CUBATOR
 #include <GraphicsMap.h>
 #include <GraphicsPictureItem.h>
+#include <GraphicsMeshItem.h>
 
 int GraphicsMapLayer::type() const{
     return Type;
@@ -90,6 +91,16 @@ void GraphicsMapLayer::addToLayer(QGraphicsItem *item, bool layerEdited){
     item->setZValue(zValue());
     item->setParentItem(this);
     setFlags(item);
+
+    switch(item->type())
+    {
+    case QGraphicsLineItem::Type:
+        item->setZValue(zValue() +1);
+        break;
+
+    case GraphicsTextItem::Type:
+        item->setZValue(zValue() +2);
+    }
 
     QGraphicsItem * parent = parentItem();
     if(parent->type() == GraphicsMap::Type && layerEdited){

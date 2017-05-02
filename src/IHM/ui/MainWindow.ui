@@ -52,7 +52,7 @@
      <x>0</x>
      <y>0</y>
      <width>1012</width>
-     <height>21</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuMap">
@@ -96,6 +96,8 @@
     <addaction name="menuMapIconsDefinitions"/>
     <addaction name="menuMapMeshes"/>
     <addaction name="actionMapCenteringGps"/>
+    <addaction name="actionTableToLayer"/>
+    <addaction name="actionLayerToTable"/>
    </widget>
    <widget class="QMenu" name="menuDatabase">
     <property name="title">
@@ -105,6 +107,7 @@
     <addaction name="actionDbShowTable"/>
     <addaction name="actionDbAddFileXYZ"/>
     <addaction name="actionDbConvertToNgf"/>
+    <addaction name="actionMeshToLayer"/>
    </widget>
    <widget class="QMenu" name="menuDevices">
     <property name="title">
@@ -178,6 +181,7 @@
    <addaction name="actionIconXYAddTool"/>
    <addaction name="separator"/>
    <addaction name="actionRecordTool"/>
+   <addaction name="actionAreaTool"/>
    <addaction name="actionMeshTool"/>
    <addaction name="actionVolumeTool"/>
    <addaction name="actionPointXyzDbAddTool"/>
@@ -673,6 +677,30 @@
   <action name="actionSelectDefaultLayer">
    <property name="text">
     <string>Select default layer</string>
+   </property>
+  </action>
+  <action name="actionTableToLayer">
+   <property name="text">
+    <string>Table to layer</string>
+   </property>
+  </action>
+  <action name="actionLayerToTable">
+   <property name="text">
+    <string>Layer to table</string>
+   </property>
+  </action>
+  <action name="actionAreaTool">
+   <property name="icon">
+    <iconset resource="../../../resources/Cubator.qrc">
+     <normaloff>:/icons/area.png</normaloff>:/icons/area.png</iconset>
+   </property>
+   <property name="text">
+    <string>Calculer surface</string>
+   </property>
+  </action>
+  <action name="actionMeshToLayer">
+   <property name="text">
+    <string>Mesh to layer</string>
    </property>
   </action>
  </widget>

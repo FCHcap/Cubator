@@ -72,20 +72,14 @@ void DbShowTableDialog::load(){
 
     try{
         VerticesReaderProcess * rProcess = new VerticesReaderProcess(Data::vectorFileName(ui->comboTablesNames->currentText()));
-        //QThread * thread = new QThread;
         ProgressDialog * dialog = new ProgressDialog(this);
 
         _cptRow = 0;
         ui->cbAllowChanges->setChecked(0);
-
-        //rProcess->connectToThread(thread);
         rProcess->connectToProgressDialog(dialog);
 
         connect(rProcess, SIGNAL(vertexRead(DVertex)), this, SLOT(addVertex(DVertex)));
         connect(rProcess, SIGNAL(rowCountUpdated(int)), this, SLOT(setRowCount(int)));
-
-        //rProcess->moveToThread(thread);
-        //thread->start();
         rProcess->start();
     }
     catch(const CubException &e){

@@ -91,7 +91,7 @@ void SettingsDialog::onMapAddEvent(){
     if(filepath != 0){
         QString map = InfoMap::filepathToMap(filepath);
         _mMaps.insert(map,filepath);
-        QList<QString> slMaps = _mMaps.keys();
+        QList<QString> slMaps = _mMaps.values();
         ui->lMaps->clear();
         ui->lMaps->addItems(slMaps);
         _mapsUpdated = 1;
@@ -106,11 +106,12 @@ void SettingsDialog::onMapRemoveEvent(){
 
     if(!wItem) return;
 
-    QString item = wItem->text();
-    if(_mMaps.contains(item)){
-        _mMaps.remove(item);
+    QString map = InfoMap::filepathToMap(wItem->text());
+
+    if(_mMaps.contains(map)){
+        _mMaps.remove(map);
         ui->lMaps->clear();
-        ui->lMaps->addItems(_mMaps.keys());
+        ui->lMaps->addItems(_mMaps.values());
     }
     _mapsUpdated = 1;
 

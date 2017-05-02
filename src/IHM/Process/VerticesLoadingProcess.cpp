@@ -5,8 +5,9 @@ VerticesLoadingProcess::VerticesLoadingProcess()
     _vertices = 0;
 }
 
-void VerticesLoadingProcess::setVertices(DVertexList &vertices){
+void VerticesLoadingProcess::setVertices(DVertexList &vertices, const bool displayDepth){
     _vertices = &vertices;
+    _displayDepth = displayDepth;
 }
 
 void VerticesLoadingProcess::run(){
@@ -31,13 +32,10 @@ void VerticesLoadingProcess::run(){
         if(verticesItem->childItems().isEmpty()){
             foreach(DVertex v, vertices){
                 QColor color = vertices.colorZ(v.z(), dmax, dmin);
-                QGraphicsEllipseItem *ellipse = new QGraphicsEllipseItem(0, 0, 0.2, 0.2);
-                ellipse->setCacheMode(QGraphicsItem::DeviceCoordinateCache);
-                ellipse->setOpacity(1.0);
-                ellipse->setPen(QPen(color));
-                ellipse->setBrush(color);
-                ellipse->setPos(v.toPointF() - QPointF(0.1, 0.1));
-                verticesItem->addToGroup(ellipse);
+
+                GraphicsPointXYZItem *item = new GraphicsPointXYZItem(_displayDepth);
+                item->setVertex(v, color);
+                verticesItem->addToGroup(item);
 
                 cpt++;
                 emit levelUpdated((int) (cpt * 100 / size));

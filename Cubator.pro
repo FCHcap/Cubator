@@ -129,7 +129,16 @@ SOURCES += src/main.cpp \
     src/IHM/SearchTextWidget.cpp \
     src/IHM/GpsInfoWidget.cpp \
     src/IHM/IconAutoWidget.cpp \
-    src/IHM/PositionWidget.cpp
+    src/IHM/PositionWidget.cpp \
+    src/IHM/TableToLayerDialog.cpp \
+    src/IHM/LayerToTableDialog.cpp \
+    src/IHM/GraphicsPointXYZItem.cpp \
+    src/IHM/AddPointXYZDialog.cpp \
+    src/IHM/Process/LayerToTableProcess.cpp \
+    src/VOLUME/AreaCalculatorProcess.cpp \
+    src/IHM/GraphicsAreaItem.cpp \
+    src/IHM/MeshToLayerDialog.cpp \
+    src/IHM/GraphicsMeshItem.cpp
 
 HEADERS  += \
     src/IHM/MainWindow.h \
@@ -254,7 +263,16 @@ HEADERS  += \
     src/IHM/PositionWidget.h \
     src/IHM/SearchTextWidget.h \
     src/IHM/GpsInfoWidget.h \
-    src/IHM/IconAutoWidget.h
+    src/IHM/IconAutoWidget.h \
+    src/IHM/TableToLayerDialog.h \
+    src/IHM/LayerToTableDialog.h \
+    src/IHM/GraphicsPointXYZItem.h \
+    src/IHM/AddPointXYZDialog.h \
+    src/IHM/Process/LayerToTableProcess.h \
+    src/VOLUME/AreaCalculatorProcess.h \
+    src/IHM/GraphicsAreaItem.h \
+    src/IHM/MeshToLayerDialog.h \
+    src/IHM/GraphicsMeshItem.h
 
 FORMS    += \
     src/IHM/ui/MainWindow.ui \
@@ -279,7 +297,11 @@ FORMS    += \
     src/IHM/ui/PositionWidget.ui \
     src/IHM/ui/SearchTextWidget.ui \
     src/IHM/ui/GpsInfoWidget.ui \
-    src/IHM/ui/IconAutoWidget.ui
+    src/IHM/ui/IconAutoWidget.ui \
+    src/IHM/ui/TableToLayerDialog.ui \
+    src/IHM/ui/LayerToTableDialog.ui \
+    src/IHM/ui/AddPointXYZDialog.ui \
+    src/IHM/ui/MeshToLayerDialog.ui
 
 RESOURCES = resources/Cubator.qrc
 

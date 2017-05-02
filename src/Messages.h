@@ -34,6 +34,7 @@ class Text : public QObject{Q_OBJECT};
 #define BRIEF26 Text::tr("Error in loading the picture !")
 #define BRIEF27 Text::tr("Error in reading the picture !")
 #define BRIEF28 Text::tr("Error in adding the icon !")
+#define BRIEF29 Text::tr("Error in selecting layer !")
 
 #define PROCESS00 Text::tr("Finished.")
 #define PROCESS01 Text::tr("Calculating the level NGF ...")
@@ -56,6 +57,9 @@ class Text : public QObject{Q_OBJECT};
 #define PROCESS18 Text::tr("Import file ...")
 #define PROCESS19 Text::tr("Reading DXF file ...")
 #define PROCESS20 Text::tr("Writing pml file ...")
+#define PROCESS21 Text::tr("Conversion of the table to graph ...")
+#define PROCESS22 Text::tr("Convertion the vertices of the layer to table...")
+#define PROCESS23 Text::tr("Calculates the surface for the area selected ...")
 
 #define QUESTION01 Text::tr("Triangulation depends on the table. If you allow editing of the table, you delete the corresponding triangulation. \nDo you really want to continue ?")
 #define QUESTION02 Text::tr("Would-you really delete this table ?")
@@ -138,7 +142,7 @@ class Text : public QObject{Q_OBJECT};
 #define TEXT21 Text::tr("Layer")
 #define TEXT22 Text::tr("Icon")
 #define TEXT23 Text::tr("Boat")
-#define TEXT24 Text::tr("Table")
+#define TEXT24 Text::tr("")
 #define TEXT25 Text::tr("Layer name : ")
 #define TEXT26 Text::tr("Icons files")
 #define TEXT27 Text::tr("Length : ")

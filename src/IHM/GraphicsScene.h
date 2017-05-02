@@ -12,6 +12,7 @@
 #include <GraphicsBoatItem.h>
 #include <GraphicsPolylineItem.h>
 #include <GraphicsMeasureItem.h>
+#include <GraphicsAreaItem.h>
 #include <GraphicsVolumeItem.h>
 #include <GraphicsMap.h>
 #include <GraphicsMapLayer.h>
@@ -68,6 +69,7 @@ signals:
     void mouseMeshDepthAdded(QString, double); // tablename, depth
     void mouseMeshDepthNotFound();
     void volumeShapeDefined(GraphicsVolumeItem *);
+    void areaShapeDefined(GraphicsAreaItem *);
     void pointXYZAdded(QPointF);
     
 public slots:
@@ -84,6 +86,7 @@ protected:
     GraphicsIconItem * _iconItem;
     GraphicsPolylineItem* _pHatchItem;
     GraphicsMeasureItem * _measureItem;
+    GraphicsAreaItem *_areaItem;
     GraphicsVolumeItem * _volumeItem;
     GraphicsBoatItem _boatItem;
     QTransform _transform;

@@ -31,6 +31,10 @@ void InputIntToStringDialog::setRange(const int &min, const int &max){
     ui->isLayers->setRange(min, max);
 }
 
+void InputIntToStringDialog::setStep(const int &step) {
+    ui->isLayers->setSingleStep(10);
+}
+
 void InputIntToStringDialog::accept(){
     _layers.insert(ui->cbLayers->currentText(), ui->isLayers->value());
     QDialog::accept();

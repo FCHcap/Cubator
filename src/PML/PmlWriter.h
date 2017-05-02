@@ -12,7 +12,10 @@
 #include <GraphicsImageItem.h>
 #include <GraphicsVolumeItem.h>
 #include <GraphicsPointXYItem.h>
+#include <GraphicsPointXYZItem.h>
+#include <GraphicsMeshItem.h>
 #include <PmlElements.h>
+#include <DVertexList.h>
 
 class PmlWriter : public DefaultProcess
 {
@@ -28,8 +31,9 @@ public slots:
 
 protected:
     void writeLayer(QDomDocument &doc, QDomElement &layer, const QGraphicsItem * item, const QString filepath);
-    void writeLine(QDomElement & element, const QLineF & color);
+    void writeLine(QDomElement & element, const QLineF & line);
     void writePoint(QDomElement & element, const QPointF & point);
+    void writeVertex(QDomElement & element, const DVertex & vertex);
     void writeRect(QDomElement & element, const QRectF & rect);
     void writeRect(QDomElement & element, const QRect & rect);
     void writePenAttributes(QDomElement & element, const QPen & pen);

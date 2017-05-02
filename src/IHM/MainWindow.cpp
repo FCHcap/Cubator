@@ -109,6 +109,7 @@ MainWindow::MainWindow() :
         // connecte la scène
         connect(_scene, SIGNAL(mouseMeshDepthAdded(QString, double)), this, SLOT(addMouseMeshDepth(QString, double)));
         connect(_scene, SIGNAL(mouseMeshDepthNotFound()), this, SLOT(clearMeshDepth()));
+        connect(_scene, SIGNAL(areaShapeDefined(GraphicsAreaItem*)), this, SLOT(calculateArea(GraphicsAreaItem*)));
         connect(_scene, SIGNAL(volumeShapeDefined(GraphicsVolumeItem*)), this, SLOT(calculateVolume(GraphicsVolumeItem*)));
         connect(_scene, SIGNAL(pointXYZAdded(QPointF)), this, SLOT(addPointXYZ(QPointF)));
 
@@ -119,7 +120,7 @@ MainWindow::MainWindow() :
 
         // charge les widgets dans la barre de status
         PositionWidget *positionWidget = new PositionWidget(statusBar());
-        connect(_scene, GraphicsScene::mousePositionUpdated, positionWidget, PositionWidget::onPositionUpdated);
+        connect(_scene, SIGNAL(mousePositionUpdated(QPointF)), positionWidget, SLOT(onPositionUpdated(QPointF)));
         statusBar()->addWidget(positionWidget);
 
         statusBar()->addWidget(new SearchTextWidget(statusBar(), this->ui->graphicsView));
@@ -182,8 +183,7 @@ void MainWindow::initCbToolBar(){
     ui->toolBarCb->addSeparator();
     ui->toolBarCb->addWidget(new QLabel(TEXT23, this)); // Boat
     ui->toolBarCb->addWidget(_cbBoats);
-    ui->toolBarCb->addSeparator();
-    ui->toolBarCb->addWidget(new QLabel(TEXT24, this)); // Table
+    ui->toolBarCb->addSeparator();;
     ui->toolBarCb->addWidget(_cbTables);
 
     connect(_cbMaps, SIGNAL(currentIndexChanged(QString)), this, SLOT(cbMapsIndexChanged(QString)));
@@ -348,6 +348,8 @@ void MainWindow::updateToolbarsMenus(){
     ui->actionMoveTool->setVisible(enable);
     ui->actionMapRemove->setEnabled(enable);
     ui->actionMapVisibility->setEnabled(enable);
+    ui->actionTableToLayer->setEnabled(enable);
+    ui->actionLayerToTable->setEnabled(enable);
 
     // Met à jour les éléments du menu liés aux calques
     enable = 0;
@@ -379,6 +381,7 @@ void MainWindow::updateToolbarsMenus(){
     ui->actionLineWidthTool->setVisible(layerEditable);
     ui->actionFontTool->setVisible(layerEditable);
     ui->actionVolumeTool->setVisible(layerEditable);
+    ui->actionAreaTool->setVisible(layerEditable);
 
     // Met à jour les outils de sauvegarde
     enable = 0;
@@ -497,10 +500,12 @@ void MainWindow::triggerTool(QAction * action){
                 QString filepath = QFileDialog::getSaveFileName(this, TITLE22, getUserPicturesLocation(), TEXT34 + "(*.png)");
 
                 if(!filepath.isEmpty()){
-                    ui->graphicsView->render(&painter);
-                    if(!image.save(filepath, "PNG", 100)){
+                    //ui->graphicsView->render(&painter);
+                    QPixmap pixMap = QPixmap::grabWidget(ui->graphicsView);
+                    pixMap.save(filepath);
+                    /*if(!image.save(filepath, "PNG", 100)){
                         ErrorDialog::errorDialog(this, BRIEF08, TEXT01 + filepath);
-                    }
+                    }*/
                 }
             }
         }
@@ -541,6 +546,7 @@ void MainWindow::triggerTool(QAction * action){
         else if(action == ui->actionMeasureAddTool) tool = TMEASURE;
         else if(action == ui->actionFillTool) tool = TPAINT;
         else if(action == ui->actionIconAddTool) tool = TICON;
+        else if(action == ui->actionAreaTool) tool = TAREA;
         else if(action == ui->actionVolumeTool) tool = TVOLUME;
         else if(action == ui->actionPointXyzDbAddTool) tool = TPOINTXYZ;
         ui->graphicsView->setDragMode(QGraphicsView::NoDrag);
@@ -580,9 +586,6 @@ void MainWindow::triggerMenu(QAction * action){
                     QString filepath;
                     (action == ui->actionMapNew) ? filepath = QFileDialog::getOpenFileName(this, TITLE03, getUserDocumentsLocation(), TEXT09+"(*.dxf *.pml)") : filepath = QFileDialog::getOpenFileName(this, "Open a map file", getUserDocumentsLocation(), "Map files (*.dxf *.pml)");
                     if(filepath.isNull()) return;
-
-                    // si aucune extension n'est spécifiée, ajoute l'extension "pml" au path du fichier
-                    if(InfoMap::filepathToExtension(filepath) != "pml") filepath = filepath + ".pml";
 
                     QString map = InfoMap::filepathToMap(filepath);
 
@@ -711,6 +714,8 @@ void MainWindow::triggerMenu(QAction * action){
             InputIntToStringDialog dialog(this);
             dialog.setLayers(lz);
             dialog.setDescription(MESSAGE03);
+            dialog.setStep(10);
+            dialog.setRange(1, 1000);
             if(dialog.exec() == QDialog::Accepted){
                 lz = dialog.layers();
                 foreach(QString layer, lz.keys()){
@@ -779,6 +784,22 @@ void MainWindow::triggerMenu(QAction * action){
                 mapItem->layerItem(layer)->setEditable(ledt[layer]);
             }
             updateToolbarsMenus();
+        }
+
+        else if(action == ui->actionTableToLayer) {
+            QString map = _mapManager.mapSelected();
+            GraphicsMap * mapItem = _mapManager.item(map);
+            TableToLayerDialog dialog(this, mapItem);
+
+            dialog.exec();
+        }
+
+        else if(action == ui->actionLayerToTable) {
+            QString map = _mapManager.mapSelected();
+            GraphicsMap *mapItem = _mapManager.item(map);
+            LayerToTableDialog dialog(this, mapItem);
+
+            dialog.exec();
         }
 
         else if(action == ui->actionSelectDefaultLayer) {
@@ -893,6 +914,15 @@ void MainWindow::triggerMenu(QAction * action){
             dialog.exec();
         }
 
+        else if(action == ui->actionMeshToLayer) {
+
+            GraphicsMap * map = _mapManager.item(_mapManager.mapSelected());
+            if(!map) return;
+
+            MeshToLayerDialog dialog(this, map);
+            dialog.exec();
+        }
+
         else if(action == ui->actionDevicesEnableGps){
             emit enableGps(ui->actionDevicesEnableGps->isChecked());
         }
@@ -979,6 +1009,20 @@ void MainWindow::closeEvent(QCloseEvent *event){
     QMainWindow::closeEvent(event);
 }
 
+void MainWindow::calculateArea(GraphicsAreaItem *item) {
+    ProgressDialog *dialog = new ProgressDialog(this);
+    AreaCalculatorProcess *proc = new AreaCalculatorProcess();
+
+    proc->setAreaItem(item);
+    proc->connectToProgressDialog(dialog);
+
+    connect(proc, SIGNAL(exceptionLaunched(CubException)), this, SLOT(showError(CubException)));
+    connect(proc, SIGNAL(surfaceUpdated(qreal)), item, SLOT(setSurface(qreal)));
+    connect(proc, SIGNAL(finished()), dialog, SLOT(deleteLater()));
+
+    proc->start();
+}
+
 void MainWindow::calculateVolume(GraphicsVolumeItem *item){
 
     VolumeCalculatorDialog dialog(this);
@@ -989,22 +1033,28 @@ void MainWindow::calculateVolume(GraphicsVolumeItem *item){
 
 void MainWindow::addPointXYZ(QPointF position){
 
-    QString tableSelected = _cbTables->currentText();
+    AddPointXYZDialog dialog(this);
 
-    if(!tableSelected.isEmpty()){
-        QString filename = Data::vectorFileName(tableSelected);
-        if(QFile::exists(Data::triangleFilename(tableSelected))){
-            if(QMessageBox::question(this, TITLE01, QUESTION01, QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes){
-                QFile::remove(Data::triangleFilename(tableSelected));
-                QFile::remove(Data::gridFilename(tableSelected));
-                QFile::remove(Data::imageFilename(tableSelected));
-            }
-            else return;
+    if(QDialog::Accepted == dialog.exec()) {
+        double depth = dialog.getDepth();
+
+        GraphicsMap * mapSelected = _mapManager.item(_mapManager.mapSelected());
+        GraphicsMapLayer * layerSelected = 0;
+
+        Q_UNUSED(layerSelected)
+
+        if(mapSelected){
+            layerSelected = mapSelected->layerItem(mapSelected->layerSelected());
         }
 
-        double height = QInputDialog::getDouble(this, TITLE02, TEXT00, 0, -DBL_MAX, DBL_MAX, 4);
-        VectorsWriter writer(filename, 1);
-        writer.writeVertex(DVertex(position.x(), position.y(), height));
+        if(layerSelected) {
+            GraphicsPointXYZItem *item = new GraphicsPointXYZItem(true);
+            DVertex vertex(position.x(), position.y(), depth);
+
+            item->setFlag(QGraphicsItem::ItemIsSelectable);
+            item->setVertex(vertex, QColor(_scene->paintColor()));
+            layerSelected->addToLayer(item);
+        }
     }
 }
 

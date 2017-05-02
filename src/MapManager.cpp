@@ -66,13 +66,12 @@ void MapManager::addMap(const QString &filepath){
 
     using namespace std;
     try{
-        QString extension = InfoMap::filepathToExtension(filepath);
-
         Map mmap;
         mmap.filepath = filepath;
         mmap.item = 0;
 
         QString map = InfoMap::filepathToMap(filepath);
+        QString extension = InfoMap::filepathToExtension(filepath);
         _mMaps.insert(map, mmap);
 
         DefaultProcess * process = 0;

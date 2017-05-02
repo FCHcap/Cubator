@@ -80,6 +80,10 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void updateBoundingRect();
 
+    // Management tables
+
+
+
 protected:
     QMap<QString, GraphicsMapLayer*> _mLayers;
     QMap<QString, GraphicsMapIconDef*> _mIcons;

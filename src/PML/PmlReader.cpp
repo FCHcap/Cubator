@@ -155,7 +155,7 @@ void PmlReader::run(){
                     GraphicsHatchItem * hatchItem = new GraphicsHatchItem;
                     QPainterPath hatchPath;
                     hatchItem->setPen(readingPenAttributes(hatch));
-                    hatchItem->setBrush(readingBrushAttributes(hatch).color());
+                    hatchItem->setBrush(readingBrushAttributes(hatch));
 
                     if(icondef) icondef->addToGroup(hatchItem);
                     else if(boatdef) boatdef->addToGroup(hatchItem);
@@ -309,27 +309,6 @@ void PmlReader::run(){
                 emit levelUpdated((int) cpt * 100 / size);
             }
 
-            // Reading mesh ...
-            QDomNodeList meshes = element.elementsByTagName("mesh");
-            for(int i=0; i<meshes.count(); i++){
-                if(meshes.at(i).isElement()){
-                    QDomElement mesh = meshes.at(i).toElement();
-
-                    GraphicsMeshImageItem * imageItem = new GraphicsMeshImageItem;
-
-                    try{
-                        imageItem->setTableName(mesh.attribute("table", ""));
-                    }
-                    catch(CubException &e){
-                        emit exceptionLaunched(e);
-                    }
-
-                    if(layer) layer->addToLayer(imageItem, 0);
-                }
-                cpt++;
-                emit levelUpdated((int) cpt * 100 / size);
-            }
-
             // Reading icons ...
             QDomNodeList layerIcons = element.elementsByTagName("icon");
             for(int i=0; i<layerIcons.count(); i++){
@@ -374,8 +353,8 @@ void PmlReader::run(){
                     volumeItem->setClosed(1);
                     volumeItem->setSurface(volume.attribute("surface", "0").toDouble());
                     volumeItem->setVolume(volume.attribute("volume", "0").toDouble());
-                    volumeItem->setMeshColor(QColor(volume.attribute("mesh_color", "")));
-                    volumeItem->setTextColor(QColor(volume.attribute("text_color", "")));
+                    volumeItem->setMeshColor(QColor(volume.attribute("mesh_color", "#000000")));
+                    volumeItem->setTextColor(QColor(volume.attribute("text_color", "#000000")));
                     volumeItem->setFont(readingFontAttributes(volume));
                     volumeItem->setPen(readingPenAttributes(volume));
                     volumeItem->setTextVisible((bool) volume.attribute("text_visible", "1").toInt());
@@ -388,6 +367,64 @@ void PmlReader::run(){
                 cpt++;
                 emit levelUpdated((int) cpt * 100 / size);
             }
+
+            // Reading vertex ...
+            QDomNodeList xyznodes = element.elementsByTagName("xyz");
+            for(int i=0; i<xyznodes.count(); i++) {
+                if(xyznodes.at(i).isElement()) {
+                    QDomElement xyzelt = xyznodes.at(i).toElement();
+
+                    GraphicsPointXYZItem * xyzitem = new GraphicsPointXYZItem(true);
+                    xyzitem->setVertex(readingVertex(xyzelt), QColor(xyzelt.attribute("color", "#000000")));
+
+                    if(layer) {
+                        layer->addToLayer(xyzitem);
+                        layer->setFlags(xyzitem);
+                    }
+                }
+                cpt++;
+                emit levelUpdated((int) cpt * 100 / size);
+            }
+
+            // reading mesh ...
+            QDomNodeList meshNodes = element.elementsByTagName("mesh");
+            for(int i=0; i<meshNodes.count(); i++) {
+                if(meshNodes.at(i).isElement()) {
+                    QDomElement meshNode = meshNodes.at(i).toElement();
+
+                    GraphicsMeshItem *mesh = new GraphicsMeshItem;
+                    layer->addToLayer(mesh);
+
+                    QGraphicsItemGroup *vertices = new QGraphicsItemGroup;
+                    mesh->setVertices(vertices);
+
+                    QGraphicsItemGroup *triangles = new QGraphicsItemGroup;
+                    mesh->setTriangles(triangles);
+
+                    for(int j=0; j<meshNode.childNodes().count(); j++) {
+                        QDomNode node = meshNode.childNodes().at(j);
+
+                        if(node.isElement()) {
+                            QDomElement elt = node.toElement();
+
+                            if(elt.tagName() == "vertex") {
+                                GraphicsPointXYZItem *xyz = new GraphicsPointXYZItem(false, vertices);
+                                xyz->setVertex(readingVertex(elt), QColor(elt.attribute("color", "#000000")));
+                            }
+
+                            if(elt.tagName() == "line") {
+                                QGraphicsLineItem *line = new QGraphicsLineItem(triangles);
+                                line->setLine(readingLine(elt));
+                                line->setPen(readingPenAttributes(elt));
+                            }
+                        }
+                    }
+
+                }
+            }
+            cpt++;
+            emit levelUpdated((int) cpt * 100 / size);
+
         }
         cpt++;
 
@@ -399,11 +436,26 @@ void PmlReader::run(){
     emit mapGenerated(InfoMap::filepathToMap(_filepath), map);
 }
 
+QLineF PmlReader::readingLine(QDomElement &element) {
+    QLineF line;
+    line.setP1(QPointF(element.attribute("x1", "0").toDouble(), element.attribute("y1", "0").toDouble()));
+    line.setP2(QPointF(element.attribute("x2", "0").toDouble(), element.attribute("y2", "0").toDouble()));
+    return line;
+}
+
 QPointF PmlReader::readingPoint(QDomElement &element){
     QPointF point;
     point.setX(element.attribute("x", "0").toDouble());
     point.setY(element.attribute("y", "0").toDouble());
     return point;
+}
+
+DVertex PmlReader::readingVertex(QDomElement &element) {
+    DVertex vertex;
+    vertex.setX(element.attribute("x", "0").toDouble());
+    vertex.setY(element.attribute("y", "0").toDouble());
+    vertex.setZ(element.attribute("z", "0").toDouble());
+    return vertex;
 }
 
 QRectF PmlReader::readingRectf(QDomElement &element){
@@ -435,13 +487,14 @@ QPen PmlReader::readingPenAttributes(QDomElement &element){
 QBrush PmlReader::readingBrushAttributes(QDomElement &element){
     QBrush brush;
     brush.setColor(QColor(element.attribute("brush_color", "#000000")));
-    brush.setStyle(Qt::SolidPattern);
+    brush.setStyle(static_cast<Qt::BrushStyle> (element.attribute("brush_style", "12").toInt()));
     return brush;
 }
 
 QFont PmlReader::readingFontAttributes(QDomElement &element){
     QFont font;
     font.fromString(element.attribute("font", ""));
+    font.setPixelSize(element.attribute("font_psize", "5").toInt());
     return font;
 }
 

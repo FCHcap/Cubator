@@ -10,9 +10,12 @@
 #include <GraphicsMapBoatDef.h>
 #include <GraphicsVolumeItem.h>
 #include <GraphicsPointXYItem.h>
+#include <GraphicsPointXYZItem.h>
+#include <GraphicsMeshItem.h>
 #include <DefaultProcess.h>
 #include <InfoMap.h>
 #include <Messages.h>
+#include <DVertexList.h>
 
 class PmlReader : public LoaderMapProcess
 {
@@ -27,7 +30,9 @@ public slots:
     void run();
 
 protected:
+    QLineF readingLine(QDomElement & element);
     QPointF readingPoint(QDomElement & element);
+    DVertex readingVertex(QDomElement & element);
     QRectF readingRectf(QDomElement & element);
     QRect readingRect(QDomElement & element);
     QPen readingPenAttributes(QDomElement & element);

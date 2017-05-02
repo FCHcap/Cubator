@@ -10,6 +10,7 @@
 #include <DefaultProcess.h>
 #include <DVertexList.h>
 #include <Messages.h>
+#include <GraphicsPointXYZItem.h>
 
 class VerticesLoadingProcess : public DefaultProcess
 {
@@ -18,7 +19,7 @@ class VerticesLoadingProcess : public DefaultProcess
 public:
     VerticesLoadingProcess();
 
-    void setVertices(DVertexList & vertices);
+    void setVertices(DVertexList & vertices, const bool displayDepth);
 
 public slots:
     void run();
@@ -28,6 +29,7 @@ signals:
 
 protected:
     DVertexList * _vertices;
+    bool _displayDepth;
 };
 
 #endif // VERTICESLOADINGPROCESS_H

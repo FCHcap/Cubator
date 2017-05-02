@@ -293,11 +293,15 @@ void CubDxfInterface::addText(const DRW_Text& data){
     QString layername = QString::fromStdString(data.layer);
 
     GraphicsTextItem * textItem = new GraphicsTextItem;
+    QFont font;
+
+    font.setPixelSize(data.height);
 
     textItem->setFlag(QGraphicsItem::ItemIgnoresTransformations);
     textItem->setText(QString::fromUtf8(data.text.c_str()));
     textItem->setPos(QPointF(data.basePoint.x, data.basePoint.y + 10));
     textItem->setRotation(-data.angle);
+    textItem->setFont(font);
 
     // Add the item to layer
     GraphicsMapLayer * layer = _map->layerItem(layername);
@@ -413,7 +417,8 @@ void CubDxfInterface::addHatch(const DRW_Hatch *data){
     // Sets the brush
     if(data->color){
         QColor color = QColor::fromRgbF(DRW::dxfColors[data->color][0], DRW::dxfColors[data->color][1], DRW::dxfColors[data->color][2]);
-        hatchItem->setBrush(color);
+        QBrush brush = QBrush(color, Qt::BDiagPattern);
+        hatchItem->setBrush(brush);
     }
 
     hatchItem->setPath(path);

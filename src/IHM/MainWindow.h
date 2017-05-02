@@ -27,6 +27,7 @@
 #include <GraphicsBoatItem.h>
 #include <VolumeCalculatorDialog.h>
 #include <VolumeCalculatorProcess.h>
+#include <AreaCalculatorProcess.h>
 #include <MapManager.h>
 #include <BoatManager.h>
 #include <Settings.h>
@@ -34,7 +35,10 @@
 #include <Messages.h>
 #include <Defines.h>
 #include <CubException.h>
-
+#include <TableToLayerDialog.h>
+#include <AddPointXYZDialog.h>
+#include <LayerToTableDialog.h>
+#include <MeshToLayerDialog.h>
 namespace Ui {
     class MainWindow;
 }
@@ -81,6 +85,7 @@ protected slots:
     void addMouseMeshDepth(QString tableName, double depth); // if the variable depth is positive then it is ignored
     void clearMeshDepth();
     void closeEvent(QCloseEvent *);
+    void calculateArea(GraphicsAreaItem *item);
     void calculateVolume(GraphicsVolumeItem * item);
     void addPointXYZ(QPointF position);
     void addIconAuto();

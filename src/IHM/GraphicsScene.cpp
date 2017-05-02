@@ -11,6 +11,7 @@ GraphicsScene::GraphicsScene(QObject *parent) :
     _pHatchItem = 0;
     _iconItem = 0;
     _measureItem = 0;
+    _areaItem = 0;
     _volumeItem = 0;
 
     _pen.setWidth(1);
@@ -53,6 +54,18 @@ void GraphicsScene::selectTool(Tool tool){
         delete _pHatchItem;
         _pHatchItem = 0;
 
+    }
+
+    if(_areaItem){
+        if(tool == TAREA){
+            GraphicsMapLayer * layer = _map->layerItem(_map->layerSelected());
+            layer->setFlags(_areaItem);
+            _areaItem->showPoints(0);
+            _areaItem->setClosed(1);
+            emit(areaShapeDefined(_areaItem));
+        }
+        else delete _areaItem;
+        _areaItem = NULL;
     }
 
     if(_volumeItem){
@@ -232,6 +245,25 @@ void GraphicsScene::mousePressEvent(QGraphicsSceneMouseEvent *event){
         }
     }
 
+    else if(_toolSelected == TAREA) {
+        if(event->button() == Qt::RightButton){
+           selectTool(TAREA);
+           event->setButton(Qt::LeftButton);
+        }
+        else{
+           if(!_areaItem){
+               _areaItem = new GraphicsAreaItem;
+               _areaItem->setFont(_font);
+               _areaItem->setTextColor(_pen.color());
+               _areaItem->setBrushColor(_pen.color());
+               layer->addToLayer(_areaItem);
+               _areaItem->setFlag(QGraphicsItem::ItemIsMovable, 0);
+           }
+           _areaItem->addPoint(event->scenePos());
+           _areaItem->update(_areaItem->boundingRect());
+        }
+    }
+
     else if(_toolSelected == TVOLUME){
        if(event->button() == Qt::RightButton){
            selectTool(TVOLUME);
@@ -344,11 +376,23 @@ void GraphicsScene::keyPressEvent(QKeyEvent *event){
             if(item->type() == GRAPHICS_ANCHORS_TYPE ||
                     item->type() == GRAPHICS_ANCHOR_TYPE ||
                     item->type() == GRAPHICS_RANCHOR_TYPE) return;
+
+            if(item->type() == GRAPHICS_POINT_XYZ_TYPE) {
+
+            }
             delete item;
+            if(NULL != this->_map) {
+                this->_map->setEdited(true);
+            }
         }
     }
     else if(event->key() == Qt::Key_Escape){
-        clearSelection();
+        if(_measureItem != NULL) {
+            delete _measureItem;
+            _measureItem = NULL;
+        } else {
+            clearSelection();
+        }
     }
     QGraphicsScene::keyPressEvent(event);
 }

@@ -25,5 +25,8 @@
 #define GRAPHICS_PICTURE_TYPE QGraphicsItem::UserType       + 19
 #define GRAPHICS_RANCHOR_TYPE QGraphicsItem::UserType       + 20
 #define GRAPHICS_ERANCHOR_TYPE QGraphicsItem::UserType      + 21
+#define GRAPHICS_POINT_XYZ_TYPE QGraphicsItem::UserType     + 22
+#define GRAPHICS_AREA_TYPE QGraphicsItem::UserType          + 23
+#define GRAPHICS_MESH_ITEM_TYPE QGraphicsItem::UserType     + 24
 
 #endif // GRAPHICSTYPES_H

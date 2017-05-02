@@ -3,6 +3,7 @@
 
 // QT
 #include <QThread>
+#include <qprogressbar.h>
 
 // CUBATOR
 #include <CubException.h>
@@ -18,6 +19,7 @@ public:
     DefaultProcess(QObject *parent = 0);
     ~DefaultProcess();
     void connectToProgressDialog(const ProgressDialog * dialog);
+    void connectToProgressBar(const QProgressBar *bar);
     CubException * lastException(); // returns the last exception launched else returns null
 
 public slots:

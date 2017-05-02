@@ -13,7 +13,7 @@ DataWriter::DataWriter(const QString &filename, bool append) throw (CubException
         open(filename, append);
     }
     catch(const CubException &e){
-        throw;
+        throw e;
     }
 }
 

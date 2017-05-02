@@ -135,6 +135,7 @@ void GraphicsPolylineItem::paint(QPainter *painter, const QStyleOptionGraphicsIt
     if(isSelected()){
         QPen pen = QPen(Qt::black);
         pen.setStyle(Qt::DashLine);
+        pen.setWidth(1);
         painter->setPen(pen);
         painter->setBrush(QBrush());
         painter->drawRect(_rect);

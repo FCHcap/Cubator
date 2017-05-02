@@ -15,7 +15,7 @@ GraphicsPointXYItem::GraphicsPointXYItem(QGraphicsItem *parent) :
     _text(this)
 {
     setAcceptDrops(1);
-    _text.setScale(-1);
+    _text.setTransform(QTransform::fromScale(1.0, -1.0));
     _tCoords = GPS;
     _tPos = RIGHT;
 }

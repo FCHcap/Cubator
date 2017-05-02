@@ -18,6 +18,11 @@ void DefaultProcess::connectToProgressDialog(const ProgressDialog * dialog){
     connect(this, SIGNAL(finished()), dialog, SLOT(deleteLater()));
 }
 
+void DefaultProcess::connectToProgressBar(const QProgressBar *bar) {
+    connect(this, SIGNAL(started()), bar, SLOT(show()));
+    connect(this, SIGNAL(levelUpdated(int)), bar, SLOT(setValue(int)));
+}
+
 CubException * DefaultProcess::lastException(){
     return _lastException;
 }
